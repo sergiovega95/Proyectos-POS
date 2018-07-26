@@ -1,0 +1,13 @@
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\bin\Debug\VentanaLogin2.exe.config
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\bin\Debug\VentanaLogin2.exe
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\bin\Debug\VentanaLogin2.pdb
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.Properties.Resources.resources
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.csproj.GenerateResource.cache
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.csproj.CoreCompileInputs.cache
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.exe
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.pdb
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.Login.resources
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.csprojAssemblyReference.cache
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.Vnuevoproducto.resources
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.Vproducto.resources
+C:\Users\Sergio\source\repos\VentanaLogin2\VentanaLogin2\obj\Debug\VentanaLogin2.Vpagar.resources

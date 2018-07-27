@@ -7,14 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace VentanaLogin2
 {
     public partial class Vnuevoproducto : Form
+
     {
+       
+
         public Vnuevoproducto()
         {
             InitializeComponent();
+            
             
         }
 
@@ -71,17 +76,31 @@ namespace VentanaLogin2
 
             else
             {
+                string codigo = textBox1.Text;
+                string nombre = textBox2.Text;
+                string precio = textBox3.Text;
 
+                string database = "server=DESKTOP-3RK3Q8F\\SQLEXPRESS;database=dbPOS;integrated security = true";
+                SqlConnection conexion = new SqlConnection(database);
+                conexion.Open();
+                //MessageBox.Show("Se establecio la conexión con la base de datos");
+                string peticion="insert into tabla_productos(Codigo,Nombre,Precio) Values(" +codigo+ " ,'" + nombre + "'," + precio + " )";
+                SqlCommand comando = new SqlCommand(peticion,conexion);
+                comando.ExecuteNonQuery();
                 MessageBox.Show("Se agrego Correctamente el nuevo producto");
+                conexion.Close();
                 textBox1.Text = "";
                 textBox2.Text = "";
                 textBox3.Text = "";
-                pictureBox1.Load("C:/Users/Sergio/source/repos/VentanaLogin2/VentanaLogin2/bin/Debug/imagenes/nuevo-producto.png");
+                //pictureBox1.Load("C:/Users/Sergio/source/repos/VentanaLogin2/VentanaLogin2/bin/Debug/imagenes/nuevo-producto.png");
                 
             }
+            
 
-            Vproducto ventana_venta = new Vproducto();
-            ventana_venta.Show();
+
+
+            //Vproducto ventana_venta = new Vproducto();
+            //ventana_venta.Show();
         }
 
         private void Vnuevoproducto_FormClosed(object sender, FormClosedEventArgs e)

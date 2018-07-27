@@ -10,35 +10,46 @@ using System.Windows.Forms;
 
 namespace VentanaLogin2
 {
-    class venta
+    class venta:Vproducto
     {
+
         
-
-        public string Totalizar(int indice)
+        public  int Totalizar()
         {
-            Vproducto ventanaproducto = new Vproducto();
-            //Int32 index = ventanaproducto.dataGridView_tabla.Rows.Count - 1;
-            double[] valor2 = new double[indice];
-            double sumatotal = 0.0;
+          
+          
+            int index = dataGridView_tabla.Rows.Count - 1;
+            double[] valor2 = new double[index];
             double aux;
+            double sumatotal=0.0;
 
-            for (int i = 0; i < indice; i++)
+          
+
+            for (int a = 0 ; a<index; a++)
             {
-
-                string valor = (string)ventanaproducto.dataGridView_tabla.Rows[i].Cells[4].Value;
-                aux = Convert.ToDouble(valor);
-                valor2[i] = aux;
+                                
+                string numero =(string) dataGridView_tabla.Rows[a].Cells[4].Value;
+                aux = Convert.ToDouble(numero);
+                valor2[a] = aux;
+                
 
             }
 
-            for (int p = 0; p < indice; p++)
+            for (int h = 0; h<index; h++)
             {
-                sumatotal = valor2[p] + sumatotal;
+                sumatotal = valor2[h] + sumatotal;
             }
+                               
             
-            return (Convert.ToString(sumatotal));
+            return (index);
 
 
+        }
+
+        public double resultado()
+        {
+
+            return (sumatotal);
         }
     }
 }

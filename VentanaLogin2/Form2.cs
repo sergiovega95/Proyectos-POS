@@ -75,6 +75,7 @@ namespace VentanaLogin2
             comboBox1.Text = "";
 
 
+
             //Logica para mostrar la sumatotal del precio de los productos
 
             Int32 index = dataGridView_tabla.Rows.Count - 1;
@@ -95,7 +96,9 @@ namespace VentanaLogin2
             {
                 sumatotal = valor2[p] + sumatotal;
             }
+        
 
+            
             //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs                       
 
             textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));

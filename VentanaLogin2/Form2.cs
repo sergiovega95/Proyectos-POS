@@ -74,8 +74,6 @@ namespace VentanaLogin2
             textBox6.Clear(); 
             comboBox1.Text = "";
 
-
-
             //Logica para mostrar la sumatotal del precio de los productos
 
             Int32 index = dataGridView_tabla.Rows.Count - 1;

@@ -33,6 +33,8 @@ namespace VentanaLogin2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Subo una imagen del producto que voy a agregar a la base de datos -- esto es opcional
+
             string rutaimg;
             openFileDialog1.ShowDialog();
             openFileDialog1.InitialDirectory = @"C:\";
@@ -47,7 +49,10 @@ namespace VentanaLogin2
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+
         {
+            //Verifica que solo se pueden ingresar numeros en el texbox de codigo de producto
+
             if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
             {
                 MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -58,6 +63,8 @@ namespace VentanaLogin2
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //Verifica que solo se pueden ingresar numeros en el texbox de codigo de precio
+
             if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
             {
                 MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -68,6 +75,10 @@ namespace VentanaLogin2
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+            //Me verifica que ningun campo este vacio en los textboxs de codigo,nombre y precio antes de agregarlos 
+            //a la base ya que esta no permite valores nulos
+
             if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
             {
                 MessageBox.Show("Tiene campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -76,26 +87,27 @@ namespace VentanaLogin2
 
             else
             {
+                //Definición de las cajas de texto e inicilización de la conexión a la base de datos
                 string nombre = textBox2.Text;
                 string precio = textBox3.Text;
-            
                 string database = "server=DESKTOP-3RK3Q8F\\SQLEXPRESS;database=dbPOS;integrated security = true";
                 SqlConnection conexion = new SqlConnection(database);
                 conexion.Open();
                
 
-                //Escribo los campos nombre y precio en la base de datos para el producto nuevo
-
+                //Escrito los campos nombre y precio de los productos en la base de datos
                 string peticion_escritura = "insert into tabla_productos(Nombre,Precio) Values('" + nombre + "'," + precio + " )";
                 SqlCommand comando = new SqlCommand(peticion_escritura, conexion);
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Se agrego Correctamente el nuevo producto");
                 conexion.Close();
-                textBox1.Text = "";
+
+                //Limpiar los registros para Agregar un nuevo producto
+                 textBox1.Text = "";
                 textBox2.Text = "";
                 textBox3.Text = "";
-                                           
-                              
+                                      
+                         
                 
             }
             
@@ -110,22 +122,16 @@ namespace VentanaLogin2
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            /*string codigo_actual = "";
-            string database = "server=DESKTOP-3RK3Q8F\\SQLEXPRESS;database=dbPOS;integrated security = true";
-            SqlConnection conexion = new SqlConnection(database);
-            conexion.Open();
-            string peticion_lectura = "select max (Codigo) from tabla_productos";
-            SqlCommand comando = new SqlCommand(peticion_lectura, conexion);
-            //SqlDataReader registro = comando.ExecuteReader();
-            textBox1.Text = comando.ExecuteScalar().ToString();
-            conexion.Close();
-            */
+       
                         
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
+
+            //Petición ala base de datos para que me retorne el codigo del ultimo producto agregado
+            // para asi poder asignar de forma automatica el codigo del nuevo.
+
             string database = "server=DESKTOP-3RK3Q8F\\SQLEXPRESS;database=dbPOS;integrated security = true";
             SqlConnection conexion = new SqlConnection(database);
             conexion.Open();

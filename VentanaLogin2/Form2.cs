@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace VentanaLogin2
 {
@@ -124,7 +125,7 @@ namespace VentanaLogin2
         {
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes     
 
-            textBox5.Text = "001";
+            textBox5.Text = "1";
             textBox6.Text = "1";
             comboBox1.Text = "Coca Cola 250 ml";
             precio = "1800";
@@ -157,7 +158,7 @@ namespace VentanaLogin2
         {
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
 
-            textBox5.Text = "002";
+            textBox5.Text = "2";
             textBox6.Text = "1";
             comboBox1.Text = "Cerveza Aguila 250 ml";
             precio = "2000";
@@ -169,7 +170,7 @@ namespace VentanaLogin2
         {
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
 
-            textBox5.Text = "003";
+            textBox5.Text = "3";
             textBox6.Text = "1";
             comboBox1.Text = "Pepsi 250 ml";
             precio = "1500";
@@ -180,7 +181,7 @@ namespace VentanaLogin2
         {
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
 
-            textBox5.Text = "004";
+            textBox5.Text = "4";
             textBox6.Text = "1";
             comboBox1.Text = "Agua Cristal 450 ml";
             precio = "1200";
@@ -190,7 +191,7 @@ namespace VentanaLogin2
         {   
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
 
-            textBox5.Text = "005";
+            textBox5.Text = "5";
             textBox6.Text = "1";
             comboBox1.Text = "Leche Freskaleche 1000 ml";
             precio = "2600";
@@ -199,7 +200,7 @@ namespace VentanaLogin2
         private void pictureBox6_Click(object sender, EventArgs e)
         {   
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
-            textBox5.Text = "006";
+            textBox5.Text = "6";
             textBox6.Text = "1";
             comboBox1.Text = "Aceite de Girasol 1000 ml";
             precio = "4500";
@@ -209,7 +210,7 @@ namespace VentanaLogin2
         {
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
 
-            textBox5.Text = "007";
+            textBox5.Text = "7";
             textBox6.Text = "1";
             comboBox1.Text = "Pan Tajado Bimbo";
             precio = "3000";
@@ -219,7 +220,7 @@ namespace VentanaLogin2
         {
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
 
-            textBox5.Text = "008";
+            textBox5.Text = "8";
             textBox6.Text = "1";
             comboBox1.Text = "Pastas la muñeca 250 gr";
             precio = "1600";
@@ -228,7 +229,7 @@ namespace VentanaLogin2
         private void pictureBox9_Click(object sender, EventArgs e)
         {   //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
 
-            textBox5.Text = "009";
+            textBox5.Text = "9";
             textBox6.Text = "1";
             comboBox1.Text = "Huevo Kikes ";
             precio = "300";
@@ -238,7 +239,7 @@ namespace VentanaLogin2
         {   
             //Definición del codigo , cantidad , precio y descripcion del producto del area frecuentes
 
-            textBox5.Text = "009";
+            textBox5.Text = "10";
             textBox6.Text = "1";
             comboBox1.Text = "Chocolatina Jet pequeña";
             precio = "500";
@@ -413,5 +414,27 @@ namespace VentanaLogin2
             textBox6.Text = "";
             comboBox1.Text = "";
             }
+
+        private void Vproducto_Load(object sender, EventArgs e)
+        {
+            // cargo todos los productos de la base de datos en el combobox1 apenas se carga el fomulario
+
+            string database = "server=DESKTOP-3RK3Q8F\\SQLEXPRESS;database=dbPOS;integrated security = true";
+            SqlConnection conexion = new SqlConnection(database);
+            conexion.Open();
+            string peticion_lectura = "select Codigo,Nombre from tabla_productos";
+            SqlCommand comando = new SqlCommand(peticion_lectura, conexion);
+            SqlDataReader registros = comando.ExecuteReader();
+
+            while (registros.Read())
+            {
+                string nombre_producto = registros["Nombre"].ToString();
+                comboBox1.Items.Add(nombre_producto);
+              
+            }
+
+
+
+        }
     }
 }

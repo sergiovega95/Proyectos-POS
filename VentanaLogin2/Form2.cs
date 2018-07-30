@@ -15,7 +15,6 @@ namespace VentanaLogin2
     {
         //Definición de las variables globales que deseo que conozcan todo el form
 
-        string precio;
         double valortotal;
         double impuesto=0.19;
         public double descuento = 0.0;
@@ -35,18 +34,27 @@ namespace VentanaLogin2
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            string producto_elegido = comboBox1.Text;
+                       
 
             descuento = (Convert.ToDouble(textBox3.Text)) / 100;
 
 
-            //Verificación si los espacios de codigo y cantidad estaban vacios
+            //Verificación si los espacios de codigo, cantidad y nombre de productos estaban vacios
 
-            if (textBox5.Text == "" || textBox6.Text == "")
+            if (textBox5.Text == "" || textBox6.Text == "" || comboBox1.Text == "")
             {
                 MessageBox.Show("Tiene campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+            SqlConnection conexion = new SqlConnection(database);
+            conexion.Open();
+            string peticion_lectura_precio = "select Precio from tabla_productos where Nombre = '" + producto_elegido + "' ";
+            SqlCommand comando = new SqlCommand(peticion_lectura_precio, conexion);
+            string precio_producto = comando.ExecuteScalar().ToString();
+            conexion.Close();
 
             //instanciación de la datagridwiew para crear filas
 
@@ -55,15 +63,15 @@ namespace VentanaLogin2
             double aux2 , aux3;
 
             aux2 = Convert.ToDouble(textBox6.Text);
-            aux3 = Convert.ToDouble(precio);
+            aux3 = Convert.ToDouble(precio_producto);
             valortotal = aux2*aux3;
 
             //Agrego los datos a la datagridview
 
             fila.CreateCells(dataGridView_tabla);
             fila.Cells[0].Value = textBox5.Text;
-            fila.Cells[1].Value = comboBox1.Text;
-            fila.Cells[2].Value = precio;
+            fila.Cells[1].Value = comboBox1.Text;                
+            fila.Cells[2].Value = precio_producto;
             fila.Cells[3].Value = textBox6.Text;
             fila.Cells[4].Value = Convert.ToString(valortotal);
 
@@ -104,7 +112,8 @@ namespace VentanaLogin2
             textBox2.Text = Convert.ToString(sumatotal * impuesto);
             textBox4.Text = Convert.ToString((sumatotal-(sumatotal*descuento)));
             label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
-            
+
+            textBox5.Focus();
 
         }
 
@@ -128,10 +137,7 @@ namespace VentanaLogin2
             textBox5.Text = "1";
             textBox6.Text = "1";
             comboBox1.Text = "Coca Cola 250 ml";
-            precio = "1800";
-                     
-
-
+            
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -151,6 +157,8 @@ namespace VentanaLogin2
             agregarform2.Enabled = true;
             borrarform2.Enabled = true;
 
+            textBox5.Focus();
+
 
         }
 
@@ -161,8 +169,7 @@ namespace VentanaLogin2
             textBox5.Text = "2";
             textBox6.Text = "1";
             comboBox1.Text = "Cerveza Aguila 250 ml";
-            precio = "2000";
-
+            
 
         }
 
@@ -173,7 +180,7 @@ namespace VentanaLogin2
             textBox5.Text = "3";
             textBox6.Text = "1";
             comboBox1.Text = "Pepsi 250 ml";
-            precio = "1500";
+            
 
         }
 
@@ -184,7 +191,7 @@ namespace VentanaLogin2
             textBox5.Text = "4";
             textBox6.Text = "1";
             comboBox1.Text = "Agua Cristal 450 ml";
-            precio = "1200";
+           
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
@@ -194,7 +201,7 @@ namespace VentanaLogin2
             textBox5.Text = "5";
             textBox6.Text = "1";
             comboBox1.Text = "Leche Freskaleche 1000 ml";
-            precio = "2600";
+            
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
@@ -203,7 +210,7 @@ namespace VentanaLogin2
             textBox5.Text = "6";
             textBox6.Text = "1";
             comboBox1.Text = "Aceite de Girasol 1000 ml";
-            precio = "4500";
+            
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
@@ -213,7 +220,7 @@ namespace VentanaLogin2
             textBox5.Text = "7";
             textBox6.Text = "1";
             comboBox1.Text = "Pan Tajado Bimbo";
-            precio = "3000";
+            
         }
 
         private void pictureBox8_Click(object sender, EventArgs e)
@@ -223,7 +230,7 @@ namespace VentanaLogin2
             textBox5.Text = "8";
             textBox6.Text = "1";
             comboBox1.Text = "Pastas la muñeca 250 gr";
-            precio = "1600";
+            
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
@@ -232,7 +239,7 @@ namespace VentanaLogin2
             textBox5.Text = "9";
             textBox6.Text = "1";
             comboBox1.Text = "Huevo Kikes ";
-            precio = "300";
+           
         }
 
         private void pictureBox10_Click(object sender, EventArgs e)
@@ -242,7 +249,7 @@ namespace VentanaLogin2
             textBox5.Text = "10";
             textBox6.Text = "1";
             comboBox1.Text = "Chocolatina Jet pequeña";
-            precio = "500";
+           
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -256,8 +263,7 @@ namespace VentanaLogin2
             double[] valor2 = new double[index];
             double sumatotal = 0.0;
             double aux;
-
-                      
+                                  
                                            
             dataGridView_tabla.Rows.RemoveAt(actualindex); //Remuevo la fila seleccionada del datagridview
 
@@ -287,31 +293,88 @@ namespace VentanaLogin2
             textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
             label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
 
+            textBox5.Focus();
                     
 
         }
 
         private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Enter))
             {
                 MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }
 
-            
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+
+                agregarform2.Focus();
+
+
+            }
+
+
+
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+            SqlConnection conexion = new SqlConnection(database);
+            string peticion_lectura_producto = "select Nombre from tabla_productos where Codigo = '" + textBox5.Text + "' ";
+            SqlCommand comando = new SqlCommand(peticion_lectura_producto, conexion);
+
+
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Enter))
             {
                 MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }
+
+
+
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                try {
+                
+                conexion.Open();
+
+                int verificar = Convert.ToInt32(comando.ExecuteScalar());
+
+                conexion.Close();
+
+                if (verificar==0) {
+
+                    MessageBox.Show("No se encontraron productos con el codigo ingresado intente con otro");
+                    textBox5.Text = "";
+                    textBox6.Text = "";
+                    comboBox1.Text = "";
+                 }
+
+                  
+                }
+
+                catch
+                {
+
+                    string nombre_producto = comando.ExecuteScalar().ToString();
+                    comboBox1.Text = nombre_producto;
+                    conexion.Close();
+                    textBox6.Focus();
+
+
+                }
+
+
+
+
+            }
+
         }
+                
 
         private void button9_Click(object sender, EventArgs e)
         {
@@ -417,9 +480,11 @@ namespace VentanaLogin2
 
         private void Vproducto_Load(object sender, EventArgs e)
         {
+            textBox5.Focus();
+
             // cargo todos los productos de la base de datos en el combobox1 apenas se carga el fomulario
 
-            string database = "server=DESKTOP-3RK3Q8F\\SQLEXPRESS;database=dbPOS;integrated security = true";
+            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
             SqlConnection conexion = new SqlConnection(database);
             conexion.Open();
             string peticion_lectura = "select Codigo,Nombre from tabla_productos";
@@ -433,7 +498,24 @@ namespace VentanaLogin2
               
             }
 
+                        
+        }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string producto_elegido=comboBox1.Text;
+
+            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+            SqlConnection conexion = new SqlConnection(database);
+            conexion.Open();
+            string peticion_lectura_codigo = "select Codigo from tabla_productos where Nombre = '" + producto_elegido + "' ";
+            SqlCommand comando = new SqlCommand(peticion_lectura_codigo, conexion);
+            string codigo_producto = comando.ExecuteScalar().ToString();
+            textBox5.Text = codigo_producto;
+            textBox6.Text = "1";
+            conexion.Close();
+
+                                    
 
         }
     }

@@ -90,7 +90,7 @@ namespace VentanaLogin2
                 //Definición de las cajas de texto e inicilización de la conexión a la base de datos
                 string nombre = textBox2.Text;
                 string precio = textBox3.Text;
-                string database = "server=DESKTOP-3RK3Q8F\\SQLEXPRESS;database=dbPOS;integrated security = true";
+                string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
                 SqlConnection conexion = new SqlConnection(database);
                 conexion.Open();
                
@@ -132,7 +132,7 @@ namespace VentanaLogin2
             //Petición ala base de datos para que me retorne el codigo del ultimo producto agregado
             // para asi poder asignar de forma automatica el codigo del nuevo.
 
-            string database = "server=DESKTOP-3RK3Q8F\\SQLEXPRESS;database=dbPOS;integrated security = true";
+            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
             SqlConnection conexion = new SqlConnection(database);
             conexion.Open();
             string peticion_lectura = "select max (Codigo) from tabla_productos";

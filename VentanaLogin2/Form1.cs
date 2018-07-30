@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VentanaLogin2
 {
-    public partial class Login : Form
+    public partial class Vlogin : Form
     {
-        public Login()
+        public Vlogin()
         {
             InitializeComponent();
 
@@ -56,10 +56,14 @@ namespace VentanaLogin2
                         
         }
 
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        
+
+        private void label3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("¿Seguro que desea Salir?","Advertencia",MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-                   }
+            Vusuarios ventausuarios = new Vusuarios();
+            ventausuarios.Show();
+            this.Hide();
+        }
     }
 
         

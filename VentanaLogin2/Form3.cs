@@ -86,7 +86,13 @@ namespace VentanaLogin2
             }
 
             else
+            //try
+
             {
+
+           
+
+            
                 //Definición de las cajas de texto e inicilización de la conexión a la base de datos
                 string nombre = textBox2.Text;
                 string precio = textBox3.Text;

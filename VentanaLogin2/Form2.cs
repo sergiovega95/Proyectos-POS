@@ -348,10 +348,13 @@ namespace VentanaLogin2
 
                 if (verificar==0) {
 
-                    MessageBox.Show("No se encontraron productos con el codigo ingresado intente con otro");
-                    textBox5.Text = "";
-                    textBox6.Text = "";
-                    comboBox1.Text = "";
+
+                 MessageBox.Show("No se encontraron productos con el codigo ingresado intente con otro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                 //MessageBox.Show("No se encontraron productos con el codigo ingresado intente con otro");
+                 textBox5.Text = "";
+                 textBox6.Text = "";
+                 comboBox1.Text = "";
+
                  }
 
                   
@@ -498,7 +501,9 @@ namespace VentanaLogin2
               
             }
 
-                        
+            registros.Close();
+
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

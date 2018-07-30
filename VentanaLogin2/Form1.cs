@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace VentanaLogin2
 {
@@ -30,7 +31,7 @@ namespace VentanaLogin2
             //Logica para comprobar si tengo los campos de usuario y contraseña
             //vacios o si el usuario y la contraseña son incorrectos
 
-            if (Usuario == "" || Clave == "")
+            /*if (Usuario == "" || Clave == "")
             {
                 MessageBox.Show("Tiene campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -52,12 +53,50 @@ namespace VentanaLogin2
                 textboxClave.Clear();
 
             }
+            */
 
+
+            if (Usuario == "" || Clave == "")
+            {
+                MessageBox.Show("Tiene campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            else 
+            {
+
+                string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+                SqlConnection conexion = new SqlConnection(database);
+                string peticion_lectura_usuario = "select Usuario,Contraseña from tabla_usuarios where Usuario = '" + Usuario + "' ";
+                conexion.Open();
+                SqlCommand comando = new SqlCommand(peticion_lectura_usuario, conexion);                                             
+                SqlDataReader registros = comando.ExecuteReader();
+                 
+               while (registros.Read())
+               {
+                     string usuario_registrado = registros["Usuario"].ToString();
+                     string clave_registrada = registros["Contraseña"].ToString();
                         
+                  if(usuario_registrado==Usuario & clave_registrada==Clave)
+                  {
+                    MessageBox.Show("Inicio Sesión Correctamente");
+                    textboxUser.Clear();
+                    textboxClave.Clear();
+                    this.Hide();
+                    Vproducto Ventas_ventana = new Vproducto();
+                    Ventas_ventana.Show();
+                    
+                  }
+                    
+               }
+                registros.Close();
+                conexion.Close();
+
+
+
+            }
         }
 
-        
-
+                
         private void label3_Click(object sender, EventArgs e)
         {
             Vusuarios ventausuarios = new Vusuarios();

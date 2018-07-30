@@ -254,17 +254,17 @@ namespace VentanaLogin2
 
         private void button8_Click(object sender, EventArgs e)
         {
-
             descuento = (Convert.ToDouble(textBox3.Text)) / 100;
-            DataGridViewRow fila = new DataGridViewRow();
-            int actualindex;
-            actualindex = dataGridView_tabla.SelectedRows[0].Index;
+                
+            try { 
+
+            int actualindex = dataGridView_tabla.SelectedRows[0].Index;
             Int32 index = dataGridView_tabla.Rows.Count - 1;
             double[] valor2 = new double[index];
             double sumatotal = 0.0;
             double aux;
-                                  
-                                           
+                             
+                                          
             dataGridView_tabla.Rows.RemoveAt(actualindex); //Remuevo la fila seleccionada del datagridview
 
 
@@ -294,7 +294,16 @@ namespace VentanaLogin2
             label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
 
             textBox5.Focus();
-                    
+
+            }
+
+            catch
+            {
+
+                MessageBox.Show("No existen registros que se puedan borrar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+
 
         }
 
@@ -522,6 +531,12 @@ namespace VentanaLogin2
 
                                     
 
+        }
+
+        private void Vproducto_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Vlogin ventanainicio = new Vlogin();
+            //ventanainicio.Show();
         }
     }
 }

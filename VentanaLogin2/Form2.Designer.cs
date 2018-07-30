@@ -41,7 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
@@ -123,7 +122,6 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox10);
@@ -242,22 +240,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "$1800";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(114, 485);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 27);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Eliminar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(13, 485);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 27);
+            this.button1.Size = new System.Drawing.Size(196, 43);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Agregar";
+            this.button1.Text = "Lista de Productos";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -529,6 +518,7 @@
             // 
             // dataGridView_tabla
             // 
+            this.dataGridView_tabla.AllowUserToDeleteRows = false;
             this.dataGridView_tabla.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView_tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_tabla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -541,6 +531,7 @@
             this.dataGridView_tabla.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView_tabla.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_tabla.Name = "dataGridView_tabla";
+            this.dataGridView_tabla.ReadOnly = true;
             this.dataGridView_tabla.RowHeadersWidth = 40;
             this.dataGridView_tabla.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_tabla.Size = new System.Drawing.Size(537, 230);
@@ -761,6 +752,7 @@
             this.Name = "Vproducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Venta Rapida";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Vproducto_FormClosed);
             this.Load += new System.EventHandler(this.Vproducto_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -808,7 +800,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;

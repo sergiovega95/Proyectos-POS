@@ -34,9 +34,6 @@ namespace VentanaLogin2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Vproducto ventanaproductos = new Vproducto();
-            //ventanaproductos.agregarform2.Enabled = true;
-            //ventanaproductos.borrarform2.Enabled = true;
             this.Close();
         }
 
@@ -61,7 +58,11 @@ namespace VentanaLogin2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+
+            Vproducto ventanaproducto = new Vproducto();
+            ventanaproducto.Show();
+            //ventanaproducto.Close();
+            this.Close();
 
         }
     }

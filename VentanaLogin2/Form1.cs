@@ -27,7 +27,7 @@ namespace VentanaLogin2
             string Usuario,Clave;
             Usuario=textboxUser.Text;
             Clave = textboxClave.Text;
-
+           
             //Logica para comprobar si tengo los campos de usuario y contraseña
             //vacios o si el usuario y la contraseña son incorrectos
 
@@ -73,21 +73,23 @@ namespace VentanaLogin2
                  
                while (registros.Read())
                {
-                     string usuario_registrado = registros["Usuario"].ToString();
-                     string clave_registrada = registros["Contraseña"].ToString();
-                        
-                  if(usuario_registrado==Usuario & clave_registrada==Clave)
+                  string usuario_registrado = registros["Usuario"].ToString();
+                  string clave_registrada = registros["Contraseña"].ToString();
+
+                  if (usuario_registrado == Usuario & clave_registrada == Clave)
                   {
-                    MessageBox.Show("Inicio Sesión Correctamente");
-                    textboxUser.Clear();
-                    textboxClave.Clear();
-                    this.Hide();
-                    Vproducto Ventas_ventana = new Vproducto();
-                    Ventas_ventana.Show();
-                    
+                        MessageBox.Show("Inicio Sesión Correctamente");
+                        textboxUser.Clear();
+                        textboxClave.Clear();
+                        this.Hide();
+                        Vproducto Ventas_ventana = new Vproducto();
+                        Ventas_ventana.Show();
+
                   }
-                    
-               }
+
+
+                }
+
                 registros.Close();
                 conexion.Close();
 
@@ -101,7 +103,7 @@ namespace VentanaLogin2
         {
             Vusuarios ventausuarios = new Vusuarios();
             ventausuarios.Show();
-            this.Hide();
+            this.Close();
         }
     }
 

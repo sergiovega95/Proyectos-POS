@@ -85,7 +85,7 @@ namespace VentanaLogin2
 
             //Logica para mostrar la sumatotal del precio de los productos
 
-            Int32 index = dataGridView_tabla.Rows.Count - 1;
+            Int32 index = dataGridView_tabla.Rows.Count ;
             double[] valor2 = new double[index];
             double sumatotal = 0.0;
             double aux;
@@ -259,7 +259,7 @@ namespace VentanaLogin2
             try { 
 
             int actualindex = dataGridView_tabla.SelectedRows[0].Index;
-            Int32 index = dataGridView_tabla.Rows.Count - 1;
+            Int32 index = dataGridView_tabla.Rows.Count ;
             double[] valor2 = new double[index];
             double sumatotal = 0.0;
             double aux;
@@ -392,7 +392,7 @@ namespace VentanaLogin2
         {
             //Aplico el descuento ingresado
 
-            Int32 index = dataGridView_tabla.Rows.Count - 1;
+            Int32 index = dataGridView_tabla.Rows.Count ;
             double[] valor2 = new double[index];
             double sumatotal = 0.0;
             double aux;
@@ -428,7 +428,7 @@ namespace VentanaLogin2
         {
 
                                 
-            Int32 index = dataGridView_tabla.Rows.Count - 1;
+            Int32 index = dataGridView_tabla.Rows.Count ;
             double[] valor2 = new double[index];
             double totalproductos = 0.0;
             double aux;
@@ -537,6 +537,33 @@ namespace VentanaLogin2
         {
             //Vlogin ventanainicio = new Vlogin();
             //ventanainicio.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+            SqlConnection conexion = new SqlConnection(database);
+            conexion.Open();
+            string inserta_factura = "insert into tabla_factura(Codigo,Detalle,ValorUnitario,Cantidad,ValorTotal) values(@Codigo,@Detalle,@ValorUnitario,@Cantidad,@ValorTotal) ";
+            SqlCommand comando = new SqlCommand(inserta_factura, conexion);
+
+            foreach (DataGridViewRow row in dataGridView_tabla.Rows)
+            { 
+            comando.Parameters.Clear();
+            comando.Parameters.AddWithValue("@Codigo", Convert.ToString(row.Cells["Codigo"].Value));
+            comando.Parameters.AddWithValue("@Detalle", Convert.ToString(row.Cells["Detalle"].Value));
+            comando.Parameters.AddWithValue("@ValorUnitario", Convert.ToString(row.Cells["ValorUnitario"].Value));
+            comando.Parameters.AddWithValue("@Cantidad", Convert.ToString(row.Cells["Cantidad"].Value));
+            comando.Parameters.AddWithValue("@ValorTotal", Convert.ToString(row.Cells["Valor_Total"].Value));
+            comando.ExecuteNonQuery();
+            }
+            conexion.Close();
+
+            Vreporte ventanareporte = new Vreporte();
+            ventanareporte.Show();
+
+            
+
         }
     }
 }

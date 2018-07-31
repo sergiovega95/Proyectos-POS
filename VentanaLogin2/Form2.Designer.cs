@@ -68,11 +68,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView_tabla = new System.Windows.Forms.DataGridView();
-            this.Codigo_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Detalle_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor_Total_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.borrarform2 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
@@ -91,6 +86,11 @@
             this.pagarform2 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -518,15 +518,16 @@
             // 
             // dataGridView_tabla
             // 
+            this.dataGridView_tabla.AllowUserToAddRows = false;
             this.dataGridView_tabla.AllowUserToDeleteRows = false;
             this.dataGridView_tabla.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView_tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_tabla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo_Producto,
-            this.Detalle_Producto,
-            this.Valor_Producto,
-            this.Cantidad_Producto,
-            this.Valor_Total_Producto});
+            this.Codigo,
+            this.Detalle,
+            this.ValorUnitario,
+            this.Cantidad,
+            this.Valor_Total});
             this.dataGridView_tabla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_tabla.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView_tabla.Location = new System.Drawing.Point(0, 0);
@@ -536,31 +537,6 @@
             this.dataGridView_tabla.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_tabla.Size = new System.Drawing.Size(537, 230);
             this.dataGridView_tabla.TabIndex = 0;
-            // 
-            // Codigo_Producto
-            // 
-            this.Codigo_Producto.HeaderText = "Codigo";
-            this.Codigo_Producto.Name = "Codigo_Producto";
-            // 
-            // Detalle_Producto
-            // 
-            this.Detalle_Producto.HeaderText = "Detalle";
-            this.Detalle_Producto.Name = "Detalle_Producto";
-            // 
-            // Valor_Producto
-            // 
-            this.Valor_Producto.HeaderText = "Valor Unitario";
-            this.Valor_Producto.Name = "Valor_Producto";
-            // 
-            // Cantidad_Producto
-            // 
-            this.Cantidad_Producto.HeaderText = "Cantidad";
-            this.Cantidad_Producto.Name = "Cantidad_Producto";
-            // 
-            // Valor_Total_Producto
-            // 
-            this.Valor_Total_Producto.HeaderText = "Valor Total";
-            this.Valor_Total_Producto.Name = "Valor_Total_Producto";
             // 
             // panel4
             // 
@@ -699,6 +675,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Imprimir Factura";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // nuevaventaform2
             // 
@@ -734,6 +711,36 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.ReadOnly = true;
+            // 
+            // ValorUnitario
+            // 
+            this.ValorUnitario.HeaderText = "Valor Unitario";
+            this.ValorUnitario.Name = "ValorUnitario";
+            this.ValorUnitario.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Valor_Total
+            // 
+            this.Valor_Total.HeaderText = "Valor Total";
+            this.Valor_Total.Name = "Valor_Total";
+            this.Valor_Total.ReadOnly = true;
             // 
             // Vproducto
             // 
@@ -805,11 +812,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo_Producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Detalle_Producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor_Producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad_Producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor_Total_Producto;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
@@ -840,5 +842,10 @@
         public System.Windows.Forms.TextBox textBox5;
         public System.Windows.Forms.ComboBox comboBox1;
         public System.Windows.Forms.DataGridView dataGridView_tabla;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ValorUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor_Total;
     }
 }

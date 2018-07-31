@@ -7,29 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace VentanaLogin2
 {
-    public partial class Vlistaproductos : Form
+    public partial class Vreporte : Form
     {
-        public Vlistaproductos()
+        public Vreporte()
         {
             InitializeComponent();
         }
 
-        private void Vlistaproductos_Load(object sender, EventArgs e)
+        private void reportViewer2_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'dbPOSDataSet.tabla_productos' Puede moverla o quitarla según sea necesario.
-            this.tabla_productosTableAdapter.Fill(this.dbPOSDataSet.tabla_productos);
 
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void Form6_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'dbPOSDataSet1.tabla_factura' Puede moverla o quitarla según sea necesario.
+            this.tabla_facturaTableAdapter.Fill(this.dbPOSDataSet1.tabla_factura);
 
-
-
+            this.reportViewer1.RefreshReport();
         }
     }
 }

@@ -67,12 +67,9 @@ namespace VentanaLogin2
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            Vlistaproductos ventanaproductos = new Vlistaproductos();
-            ventanaproductos.Show();
+            
                         
         }
-
-        
 
         private void Vnuevoproducto_Load(object sender, EventArgs e)
         {

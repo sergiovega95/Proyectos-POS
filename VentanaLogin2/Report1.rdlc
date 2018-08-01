@@ -220,7 +220,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Codigo.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -252,7 +254,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Detalle.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -285,6 +289,7 @@
                             <TextRun>
                               <Value>=Fields!ValorUnitario.Value</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <Format>'$' #,0,;('$' #,0,)</Format>
                               </Style>
                             </TextRun>
@@ -319,7 +324,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Cantidad.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -352,6 +359,7 @@
                             <TextRun>
                               <Value>=Fields!ValorTotal.Value</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <Format>'$' #,0;('$' #,0)</Format>
                               </Style>
                             </TextRun>
@@ -417,22 +425,37 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!Subtotal.Value, "DataSet2")</Value>
-                <Style />
+                <Value>SubTotal:</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> $ </Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Last(Fields!Subtotal.Value, "DataSet2")</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Subtotal</rd:DefaultName>
-        <Top>3.76279cm</Top>
-        <Left>5.26203cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Top>2.46119cm</Top>
+        <Left>0.31432cm</Left>
+        <Height>0.70583cm</Height>
+        <Width>13.86638cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
-            <Style>None</Style>
+            <Style>Solid</Style>
           </Border>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -447,22 +470,128 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!Impuesto.Value, "DataSet2")</Value>
-                <Style />
+                <Value>Impuesto:</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> $ </Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Last(Fields!Impuesto.Value, "DataSet2")</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Impuesto</rd:DefaultName>
-        <Top>4.08029cm</Top>
-        <Left>9.86578cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Top>3.16702cm</Top>
+        <Left>0.31432cm</Left>
+        <Height>0.70583cm</Height>
+        <Width>13.86638cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
-            <Style>None</Style>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Descuento">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Descuento:</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> $ </Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Last(Fields!Descuento.Value, "DataSet2")</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Descuento</rd:DefaultName>
+        <Top>3.87286cm</Top>
+        <Left>0.31432cm</Left>
+        <Height>0.70583cm</Height>
+        <Width>13.86638cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Totalpago">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Total a Pagar</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Color>Red</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>: $ </Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Last(Fields!Totalpago.Value, "DataSet2")</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Totalpago</rd:DefaultName>
+        <Top>4.57869cm</Top>
+        <Left>0.31432cm</Left>
+        <Height>0.70583cm</Height>
+        <Width>13.86638cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
           </Border>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -471,10 +600,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>3.0625in</Height>
+    <Height>2.15625in</Height>
     <Style />
   </Body>
-  <Width>5.70771in</Width>
+  <Width>5.65054in</Width>
   <Page>
     <PageHeader>
       <Height>3.85404cm</Height>
@@ -506,7 +635,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Nº XXXXXX</Value>
+                      <Value>Nº EFAC-001</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>

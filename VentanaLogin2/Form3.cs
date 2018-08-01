@@ -10,17 +10,21 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 
 namespace VentanaLogin2
-{
+{    
     public partial class Vnuevoproducto : Form
 
     {
+       public int actualindex;
+        
        
+
 
         public Vnuevoproducto()
         {
             InitializeComponent();
-            
-            
+         
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -135,7 +139,7 @@ namespace VentanaLogin2
                 string peticion_escritura = "insert into tabla_productos(Nombre,Precio) Values('" + nombre + "'," + precio + " )";
                 SqlCommand comando = new SqlCommand(peticion_escritura, conexion);
                 comando.ExecuteNonQuery();
-                MessageBox.Show("Se agrego Correctamente el nuevo producto");
+                MessageBox.Show("Se agrego Correctamente el nuevo producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 conexion.Close();
 
                 //Limpiar los registros para Agregar un nuevo producto
@@ -198,6 +202,50 @@ namespace VentanaLogin2
 
                      
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+                       
+           
+            try
+            {
+                int actualindex =dataGridView1.SelectedRows[0].Index;
+                actualindex = dataGridView1.SelectedRows[0].Index;
+                string codigo_producto_edicion = dataGridView1.Rows[actualindex].Cells[0].Value.ToString();
+                string nombre_producto_edicion = dataGridView1.Rows[actualindex].Cells[1].Value.ToString();
+                string precio_producto_edicion = dataGridView1.Rows[actualindex].Cells[2].Value.ToString();
+
+                Veditar ventanaeditar = new Veditar();
+                ventanaeditar.textBox1.Text = codigo_producto_edicion;
+                ventanaeditar.textBox2.Text = nombre_producto_edicion;
+                ventanaeditar.textBox3.Text = precio_producto_edicion;                       
+                ventanaeditar.Show();
+            }
+
+            catch
+            {
+              MessageBox.Show("Para Editar un Producto debe elegir toda la fila y no solo una celda", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+                     
+        }
+
+        private void textBox3_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Enter))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+
+                button2.Focus();
+
+
+            }
         }
     }
 }

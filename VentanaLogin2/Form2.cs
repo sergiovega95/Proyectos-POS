@@ -259,7 +259,7 @@ namespace VentanaLogin2
             try { 
 
             int actualindex = dataGridView_tabla.SelectedRows[0].Index;
-            Int32 index = dataGridView_tabla.Rows.Count ;
+            Int32 index = dataGridView_tabla.Rows.Count -1 ;
             double[] valor2 = new double[index];
             double sumatotal = 0.0;
             double aux;
@@ -512,7 +512,15 @@ namespace VentanaLogin2
 
             registros.Close();
 
+            conexion.Close();
 
+            conexion.Open();
+            string borrar_ultima_factura = "delete from tabla_factura";
+            SqlCommand comando2 = new SqlCommand(borrar_ultima_factura, conexion);
+            comando2.ExecuteNonQuery();
+            conexion.Close();
+
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -540,7 +548,7 @@ namespace VentanaLogin2
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        {             
             string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
             SqlConnection conexion = new SqlConnection(database);
             conexion.Open();

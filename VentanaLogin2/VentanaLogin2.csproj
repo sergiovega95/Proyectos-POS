@@ -83,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbPOSDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dbPOSDataSet22.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbPOSDataSet22.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +177,17 @@
     </None>
     <None Include="dbPOSDataSet1.xss">
       <DependentUpon>dbPOSDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="dbPOSDataSet22.xsc">
+      <DependentUpon>dbPOSDataSet22.xsd</DependentUpon>
+    </None>
+    <None Include="dbPOSDataSet22.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbPOSDataSet22.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbPOSDataSet22.xss">
+      <DependentUpon>dbPOSDataSet22.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

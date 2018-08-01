@@ -25,7 +25,9 @@ namespace VentanaLogin2
 
         private void Form6_Load(object sender, EventArgs e)
         {
-            
+            // TODO: esta línea de código carga datos en la tabla 'dbPOSDataSet2.tabla_totales' Puede moverla o quitarla según sea necesario.
+            this.tabla_totalesTableAdapter.Fill(this.dbPOSDataSet2.tabla_totales);
+
             // TODO: esta línea de código carga datos en la tabla 'dbPOSDataSet1.tabla_factura' 
             this.tabla_facturaTableAdapter.Fill(this.dbPOSDataSet1.tabla_factura);
             this.reportViewer1.RefreshReport();

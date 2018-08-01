@@ -567,6 +567,14 @@ namespace VentanaLogin2
             }
             conexion.Close();
 
+
+            conexion.Open();
+            string inserta_totales = "insert into tabla_totales(Subtotal,Impuesto,Descuento,Totalpago) values("+textBox1.Text+","+textBox2.Text+","+textBox3.Text+","+textBox4.Text+") ";
+            SqlCommand comando2 = new SqlCommand(inserta_totales, conexion);
+            comando2.ExecuteNonQuery();
+            conexion.Close();
+
+
             Vreporte ventanareporte = new Vreporte();
             ventanareporte.Show();
 

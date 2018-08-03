@@ -13,6 +13,8 @@ namespace VentanaLogin2
 {
     public partial class Veditar : Form
     {
+        string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+
         public Veditar()
         {
             InitializeComponent();
@@ -20,40 +22,33 @@ namespace VentanaLogin2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //definiciòn de los textboxs
             string codigo = textBox1.Text;
             string nombre = textBox2.Text;
             string precio = textBox3.Text;
-            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
-            SqlConnection conexion = new SqlConnection(database);
-            conexion.Open();
-
-
+           
             //Actualizo los campos nombre y precio de los productos en la base de datos
             string peticion_edicion = "update tabla_productos set Nombre='" + nombre + "',Precio=" + precio + " where Codigo=" + codigo + "";
-            SqlCommand comando = new SqlCommand(peticion_edicion, conexion);
-            comando.ExecuteNonQuery();
-            MessageBox.Show("Se actualizo correctamente el producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            conexion.Close();
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            this.Close();
+            clase_escritura consulta = new clase_escritura();
+            int resultado = consulta.escribir(database, peticion_edicion);
 
-
+            if (resultado>0)
+            {
+                //Muestro un mensaje limpio los texbox para otra edicion y cierro el formulario
+                MessageBox.Show("Se actualizo correctamente el producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+               this.Close();
+            }        
+          
         }
 
-        private void Form7_Load(object sender, EventArgs e)
-        {
-            //Vnuevoproducto ventanaproducto = new Vnuevoproducto();
-
-                    
-                       
-           
-
-        }
-
+      
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //Verifico que solo se puedan meter numeros en el campo precio
+
             if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Enter))
             {
                 MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -66,7 +61,6 @@ namespace VentanaLogin2
 
                 button1.Focus();
 
-
             }
 
         }
@@ -76,10 +70,7 @@ namespace VentanaLogin2
 
             if ((int)e.KeyChar == (int)Keys.Enter)
             {
-
                 textBox3.Focus();
-
-
             }
         }
 

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.tabla_facturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dbPOSDataSet1 = new VentanaLogin2.dbPOSDataSet1();
             this.tabla_totalesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -74,22 +74,22 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource4.Name = "DataSet1";
-            reportDataSource4.Value = this.tabla_facturaBindingSource;
-            reportDataSource5.Name = "DataSet2";
-            reportDataSource5.Value = this.tabla_totalesBindingSource;
-            reportDataSource6.Name = "DataSet3";
-            reportDataSource6.Value = this.tabla_facturaBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource6);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.tabla_facturaBindingSource;
+            reportDataSource2.Name = "DataSet2";
+            reportDataSource2.Value = this.tabla_totalesBindingSource;
+            reportDataSource3.Name = "DataSet3";
+            reportDataSource3.Value = this.tabla_facturaBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "VentanaLogin2.Report1.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(432, 361);
+            this.reportViewer1.Size = new System.Drawing.Size(432, 461);
             this.reportViewer1.TabIndex = 0;
-            this.reportViewer1.ZoomPercent = 75;
+            this.reportViewer1.ZoomPercent = 80;
             // 
             // tabla_totalesTableAdapter
             // 
@@ -104,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 361);
+            this.ClientSize = new System.Drawing.Size(432, 461);
             this.Controls.Add(this.reportViewer1);
             this.MaximumSize = new System.Drawing.Size(644, 500);
             this.Name = "Vreporte";

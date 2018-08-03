@@ -35,6 +35,7 @@ namespace VentanaLogin2
 
         private void Vreporte_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //Borar campos de la ultima factura en la base para poder generar una nueva 
             string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
             SqlConnection conexion = new SqlConnection(database);
             conexion.Open();

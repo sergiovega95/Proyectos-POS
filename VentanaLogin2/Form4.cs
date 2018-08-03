@@ -18,8 +18,7 @@ namespace VentanaLogin2
         {
             
             InitializeComponent();
-
-            //double cambio = 0.0;
+                      
             double pagacon = 0.0;
             double total = 0.0;
             textBox3.Text = "0.0";
@@ -40,7 +39,8 @@ namespace VentanaLogin2
        
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            //Evento enter para calcular cuanto es el cambio a dar 
+
             if ((int)e.KeyChar == (int)Keys.Enter)
             {
                 double cambio;
@@ -58,10 +58,12 @@ namespace VentanaLogin2
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            //Vuelvo a la pantalla principal despues de pagar y cierro la de pago
             Vproducto ventanaproducto = new Vproducto();
-            ventanaproducto.Show();
-            //ventanaproducto.Close();
+            ventanaproducto.button6.Enabled = false;
+            ventanaproducto.borrarform2.Enabled = false;
+            ventanaproducto.limpiarform2.Enabled = false;
+            ventanaproducto.dataGridView_tabla.Enabled = false;
             this.Close();
 
         }

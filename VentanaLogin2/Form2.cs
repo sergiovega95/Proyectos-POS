@@ -15,11 +15,12 @@ namespace VentanaLogin2
     {
         //Definición de las variables globales que deseo que conozcan todo el form
 
+        string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
         double valortotal;
         double impuesto=0.19;
         public double descuento = 0.0;
         public double sumatotal = 0.0;
-        
+                
         
         public Vproducto()
         {
@@ -34,8 +35,7 @@ namespace VentanaLogin2
 
         private void button6_Click(object sender, EventArgs e)
         {
-            string producto_elegido = comboBox1.Text;
-                       
+                                  
 
             descuento = (Convert.ToDouble(textBox3.Text)) / 100;
 
@@ -48,80 +48,82 @@ namespace VentanaLogin2
                 return;
             }
 
-            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
-            SqlConnection conexion = new SqlConnection(database);
-            conexion.Open();
+            string producto_elegido = comboBox1.Text;
             string peticion_lectura_precio = "select Precio from tabla_productos where Nombre = '" + producto_elegido + "' ";
-            SqlCommand comando = new SqlCommand(peticion_lectura_precio, conexion);
-            string precio_producto = comando.ExecuteScalar().ToString();
-            conexion.Close();
+            clase_lectura leer = new clase_lectura();
+            string precio_producto = leer.leer_un_dato(database, peticion_lectura_precio);
 
-            //instanciación de la datagridwiew para crear filas
+                           
+                    //instanciación de la datagridwiew para crear filas
 
-            DataGridViewRow fila = new DataGridViewRow();
-            dataGridView_tabla.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            double aux2 , aux3;
+                    DataGridViewRow fila = new DataGridViewRow();
+                    dataGridView_tabla.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    double aux2, aux3;
 
-            aux2 = Convert.ToDouble(textBox6.Text);
-            aux3 = Convert.ToDouble(precio_producto);
-            valortotal = aux2*aux3;
+                    aux2 = Convert.ToDouble(textBox6.Text);
+                    aux3 = Convert.ToDouble(precio_producto);
+                    valortotal = aux2 * aux3;
 
-            //Agrego los datos a la datagridview
+                    //Agrego los datos a la datagridview
 
-            fila.CreateCells(dataGridView_tabla);
-            fila.Cells[0].Value = textBox5.Text;
-            fila.Cells[1].Value = comboBox1.Text;                
-            fila.Cells[2].Value = precio_producto;
-            fila.Cells[3].Value = textBox6.Text;
-            fila.Cells[4].Value = Convert.ToString(valortotal);
+                    fila.CreateCells(dataGridView_tabla);
+                    fila.Cells[0].Value = textBox5.Text;
+                    fila.Cells[1].Value = comboBox1.Text;
+                    fila.Cells[2].Value = precio_producto;
+                    fila.Cells[3].Value = textBox6.Text;
+                    fila.Cells[4].Value = Convert.ToString(valortotal);
 
-            dataGridView_tabla.Rows.Add(fila);
+                    dataGridView_tabla.Rows.Add(fila);
 
-            //Refresco las textbox para ingresar nuevo datos
+                    //Refresco las textbox para ingresar nuevo datos
 
-            textBox5.Clear();
-            textBox6.Clear(); 
-            comboBox1.Text = "";
+                    textBox5.Clear();
+                    textBox6.Clear();
+                    comboBox1.Text = "";
 
-            //Logica para mostrar la sumatotal del precio de los productos
+                    //Logica para mostrar la sumatotal del precio de los productos
 
-            Int32 index = dataGridView_tabla.Rows.Count ;
-            double[] valor2 = new double[index];
-            double sumatotal = 0.0;
-            double aux;
+                    Int32 index = dataGridView_tabla.Rows.Count;
+                    totalizar sumar = new totalizar();
+                    double sumatotal = 0.0;
+                    //sumatotal =sumar.total(index);
+                    //MessageBox.Show(Convert.ToString(sumatotal));
 
-            for (int i = 0; i <index; i++)
-            {
-                
-                string valor = (string)dataGridView_tabla.Rows[i].Cells[4].Value;
-                aux = Convert.ToDouble(valor);
-                valor2[i] = aux;
 
-            }
+                    double[] valor2 = new double[index];
+                    //double sumatotal = 0.0;
+                    double aux;
 
-            for (int p = 0; p < index ; p++)
-            {
-                sumatotal = valor2[p] + sumatotal;
-            }
-        
+                    for (int a = 0; a < index; a++)
+                    {
 
-            
-            //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs                       
+                        string valor = (string)dataGridView_tabla.Rows[a].Cells[4].Value;
+                        aux = Convert.ToDouble(valor);
+                        valor2[a] = aux;
 
-            textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
-            textBox2.Text = Convert.ToString(sumatotal * impuesto);
-            textBox4.Text = Convert.ToString((sumatotal-(sumatotal*descuento)));
-            label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
+                    }
 
-            textBox5.Focus();
+                    for (int p = 0; p < index; p++)
+                    {
+                        sumatotal = valor2[p] + sumatotal;
+                    }
+
+
+                    //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs                       
+
+                    textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
+                    textBox2.Text = Convert.ToString(sumatotal * impuesto);
+                    textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
+                    label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
+                    textBox5.Focus();                        
+                             
+                      
 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             //muestro la Hora del sistema en un simple label
-
-
             Hora.Text = DateTime.Now.ToString("G");
         }
 
@@ -154,7 +156,7 @@ namespace VentanaLogin2
             textBox6.Text = "";
             comboBox1.Text ="";
 
-            agregarform2.Enabled = true;
+            button6.Enabled = true;
             borrarform2.Enabled = true;
 
             textBox5.Focus();
@@ -319,7 +321,7 @@ namespace VentanaLogin2
             if ((int)e.KeyChar == (int)Keys.Enter)
             {
 
-                agregarform2.Focus();
+                button6.Focus();
 
 
             }
@@ -330,11 +332,8 @@ namespace VentanaLogin2
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
-            SqlConnection conexion = new SqlConnection(database);
             string peticion_lectura_producto = "select Nombre from tabla_productos where Codigo = '" + textBox5.Text + "' ";
-            SqlCommand comando = new SqlCommand(peticion_lectura_producto, conexion);
-
+            
 
             if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Enter))
             {
@@ -348,40 +347,29 @@ namespace VentanaLogin2
             if ((int)e.KeyChar == (int)Keys.Enter)
             {
                 try {
-                
-                conexion.Open();
-
-                int verificar = Convert.ToInt32(comando.ExecuteScalar());
-
-                conexion.Close();
-
-                if (verificar==0) {
-
-
-                 MessageBox.Show("No se encontraron productos con el codigo ingresado intente con otro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                 //MessageBox.Show("No se encontraron productos con el codigo ingresado intente con otro");
-                 textBox5.Text = "";
-                 textBox6.Text = "";
-                 comboBox1.Text = "";
-
-                 }
-
+                    clase_lectura leer = new clase_lectura();
+                    string nombre_producto = leer.leer_un_dato(database, peticion_lectura_producto);
+                    comboBox1.Text = nombre_producto;
+                    textBox6.Focus();
                   
                 }
-
+                
                 catch
                 {
+                    clase_lectura leer = new clase_lectura();
+                    int verificar = leer.verificar_existencia(database, peticion_lectura_producto);
 
-                    string nombre_producto = comando.ExecuteScalar().ToString();
-                    comboBox1.Text = nombre_producto;
-                    conexion.Close();
-                    textBox6.Focus();
+                    if (verificar == 0)
+                    {
+                         MessageBox.Show("No se encontraron productos con el codigo ingresado intente con otro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        textBox5.Text = "";
+                        textBox6.Text = "";
+                        comboBox1.Text = "";
+                    }
 
+                                    
 
                 }
-
-
-
 
             }
 
@@ -426,8 +414,7 @@ namespace VentanaLogin2
 
         private void button5_Click(object sender, EventArgs e)
         {
-
-                                
+                                            
             Int32 index = dataGridView_tabla.Rows.Count ;
             double[] valor2 = new double[index];
             double totalproductos = 0.0;
@@ -466,13 +453,13 @@ namespace VentanaLogin2
 
             Vnuevoproducto ventananuevoproducto = new Vnuevoproducto();
             ventananuevoproducto.Show();
-            this.Close();
+            //this.Close();
                        
         }
 
         private void nuevaventaform2_Click(object sender, EventArgs e)
         {
-            agregarform2.Enabled = true;
+            button6.Enabled = true;
             borrarform2.Enabled = true;
             limpiarform2.Enabled = true;
             textBox5.Enabled = true;
@@ -496,12 +483,12 @@ namespace VentanaLogin2
 
             // cargo todos los productos de la base de datos en el combobox1 apenas se carga el fomulario
 
-            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
-            SqlConnection conexion = new SqlConnection(database);
-            conexion.Open();
             string peticion_lectura = "select Codigo,Nombre from tabla_productos";
-            SqlCommand comando = new SqlCommand(peticion_lectura, conexion);
-            SqlDataReader registros = comando.ExecuteReader();
+            SqlConnection conexion = new SqlConnection(database);
+                       
+
+            clase_lectura lectura = new clase_lectura();
+            SqlDataReader registros = lectura.leer_varios_datos(database, peticion_lectura);
 
             while (registros.Read())
             {
@@ -511,74 +498,78 @@ namespace VentanaLogin2
             }
 
             registros.Close();
-
             conexion.Close();
 
-            conexion.Open();
+
+            //Borro ultima factura
+
             string borrar_ultima_factura = "delete from tabla_factura";
-            SqlCommand comando2 = new SqlCommand(borrar_ultima_factura, conexion);
-            comando2.ExecuteNonQuery();
-            conexion.Close();
-
+            clase_escritura consulta = new clase_escritura();
+            consulta.escribir(database, borrar_ultima_factura);
             
+                                 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string producto_elegido=comboBox1.Text;
-
-            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
-            SqlConnection conexion = new SqlConnection(database);
-            conexion.Open();
+            string producto_elegido=comboBox1.Text;                   
             string peticion_lectura_codigo = "select Codigo from tabla_productos where Nombre = '" + producto_elegido + "' ";
-            SqlCommand comando = new SqlCommand(peticion_lectura_codigo, conexion);
-            string codigo_producto = comando.ExecuteScalar().ToString();
-            textBox5.Text = codigo_producto;
-            textBox6.Text = "1";
-            conexion.Close();
 
-                                    
+            clase_lectura leer = new clase_lectura();
+            string codigo_producto = leer.leer_un_dato(database, peticion_lectura_codigo);
+            textBox5.Text = codigo_producto;
+            textBox6.Text = "1";                                        
 
         }
 
         private void Vproducto_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //Vlogin ventanainicio = new Vlogin();
-            //ventanainicio.Show();
+            Vlogin ventanainicio = new Vlogin();
+            ventanainicio.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {             
-            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
-            SqlConnection conexion = new SqlConnection(database);
-            conexion.Open();
-            string inserta_factura = "insert into tabla_factura(Codigo,Detalle,ValorUnitario,Cantidad,ValorTotal) values(@Codigo,@Detalle,@ValorUnitario,@Cantidad,@ValorTotal) ";
-            SqlCommand comando = new SqlCommand(inserta_factura, conexion);
+        {
+            //Verifico si tengo campos vacios en el datagridview
+            if (dataGridView_tabla.Rows.Count == 0)
+            {
+                MessageBox.Show("No existen campos para imprimir una factura");
 
-            foreach (DataGridViewRow row in dataGridView_tabla.Rows)
-            { 
-            comando.Parameters.Clear();
-            comando.Parameters.AddWithValue("@Codigo", Convert.ToString(row.Cells["Codigo"].Value));
-            comando.Parameters.AddWithValue("@Detalle", Convert.ToString(row.Cells["Detalle"].Value));
-            comando.Parameters.AddWithValue("@ValorUnitario", Convert.ToString(row.Cells["ValorUnitario"].Value));
-            comando.Parameters.AddWithValue("@Cantidad", Convert.ToString(row.Cells["Cantidad"].Value));
-            comando.Parameters.AddWithValue("@ValorTotal", Convert.ToString(row.Cells["Valor_Total"].Value));
-            comando.ExecuteNonQuery();
             }
-            conexion.Close();
+            else
+
+            {                        
+                SqlConnection conexion = new SqlConnection(database);
+                conexion.Open();
+                string inserta_factura = "insert into tabla_factura(Codigo,Detalle,ValorUnitario,Cantidad,ValorTotal) values(@Codigo,@Detalle,@ValorUnitario,@Cantidad,@ValorTotal) ";
+                SqlCommand comando = new SqlCommand(inserta_factura, conexion);
+
+                foreach (DataGridViewRow row in dataGridView_tabla.Rows)
+                {
+                    comando.Parameters.Clear();
+                    comando.Parameters.AddWithValue("@Codigo", Convert.ToString(row.Cells["Codigo"].Value));
+                    comando.Parameters.AddWithValue("@Detalle", Convert.ToString(row.Cells["Detalle"].Value));
+                    comando.Parameters.AddWithValue("@ValorUnitario", Convert.ToString(row.Cells["ValorUnitario"].Value));
+                    comando.Parameters.AddWithValue("@Cantidad", Convert.ToString(row.Cells["Cantidad"].Value));
+                    comando.Parameters.AddWithValue("@ValorTotal", Convert.ToString(row.Cells["Valor_Total"].Value));
+                    comando.ExecuteNonQuery();
+                }
+                conexion.Close();
+
+                string inserta_totales = "insert into tabla_totales(Subtotal,Impuesto,Descuento,Totalpago) values(" + textBox1.Text + "," + textBox2.Text + "," + textBox3.Text + "," + textBox4.Text + ") ";
+                clase_escritura consulta = new clase_escritura();
+                consulta.escribir(database, inserta_totales);                                          
+
+                Vreporte ventanareporte = new Vreporte();
+                ventanareporte.Show();
 
 
-            conexion.Open();
-            string inserta_totales = "insert into tabla_totales(Subtotal,Impuesto,Descuento,Totalpago) values("+textBox1.Text+","+textBox2.Text+","+textBox3.Text+","+textBox4.Text+") ";
-            SqlCommand comando2 = new SqlCommand(inserta_totales, conexion);
-            comando2.ExecuteNonQuery();
-            conexion.Close();
+
+            }
 
 
-            Vreporte ventanareporte = new Vreporte();
-            ventanareporte.Show();
 
-            
+
 
         }
     }

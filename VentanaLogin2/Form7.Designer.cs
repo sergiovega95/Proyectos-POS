@@ -142,7 +142,6 @@
             this.Controls.Add(this.label2);
             this.Name = "Veditar";
             this.Text = "Form7";
-            this.Load += new System.EventHandler(this.Form7_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -124,6 +124,7 @@
             // 
             // button5
             // 
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(3, 222);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 37);
@@ -134,9 +135,10 @@
             // 
             // button6
             // 
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.Location = new System.Drawing.Point(97, 222);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 37);
+            this.button6.Size = new System.Drawing.Size(142, 37);
             this.button6.TabIndex = 19;
             this.button6.Text = "Eliminar Producto";
             this.button6.UseVisualStyleBackColor = true;
@@ -289,7 +291,6 @@
             this.Name = "Vnuevoproducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Producto";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Vnuevoproducto_FormClosed);
             this.Load += new System.EventHandler(this.Vnuevoproducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource)).EndInit();

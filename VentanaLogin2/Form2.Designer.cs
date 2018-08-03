@@ -68,6 +68,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView_tabla = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.borrarform2 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
@@ -80,17 +85,12 @@
             this.label12 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.agregarform2 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.nuevaventaform2 = new System.Windows.Forms.Button();
             this.pagarform2 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -538,6 +538,36 @@
             this.dataGridView_tabla.Size = new System.Drawing.Size(537, 230);
             this.dataGridView_tabla.TabIndex = 0;
             // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.ReadOnly = true;
+            // 
+            // ValorUnitario
+            // 
+            this.ValorUnitario.HeaderText = "Valor Unitario";
+            this.ValorUnitario.Name = "ValorUnitario";
+            this.ValorUnitario.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Valor_Total
+            // 
+            this.Valor_Total.HeaderText = "Valor Total";
+            this.Valor_Total.Name = "Valor_Total";
+            this.Valor_Total.ReadOnly = true;
+            // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -552,7 +582,7 @@
             this.panel4.Controls.Add(this.label12);
             this.panel4.Controls.Add(this.textBox5);
             this.panel4.Controls.Add(this.comboBox1);
-            this.panel4.Controls.Add(this.agregarform2);
+            this.panel4.Controls.Add(this.button6);
             this.panel4.Location = new System.Drawing.Point(5, 12);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(539, 110);
@@ -650,6 +680,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(292, 39);
             this.comboBox1.Name = "comboBox1";
@@ -657,15 +688,15 @@
             this.comboBox1.TabIndex = 10;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // agregarform2
+            // button6
             // 
-            this.agregarform2.Location = new System.Drawing.Point(241, 77);
-            this.agregarform2.Name = "agregarform2";
-            this.agregarform2.Size = new System.Drawing.Size(91, 21);
-            this.agregarform2.TabIndex = 0;
-            this.agregarform2.Text = "Agregar";
-            this.agregarform2.UseVisualStyleBackColor = true;
-            this.agregarform2.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Location = new System.Drawing.Point(241, 77);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(91, 21);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "Agregar";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button3
             // 
@@ -711,36 +742,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            // 
-            // Detalle
-            // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            this.Detalle.ReadOnly = true;
-            // 
-            // ValorUnitario
-            // 
-            this.ValorUnitario.HeaderText = "Valor Unitario";
-            this.ValorUnitario.Name = "ValorUnitario";
-            this.ValorUnitario.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // Valor_Total
-            // 
-            this.Valor_Total.HeaderText = "Valor Total";
-            this.Valor_Total.Name = "Valor_Total";
-            this.Valor_Total.ReadOnly = true;
             // 
             // Vproducto
             // 
@@ -833,7 +834,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button9;
-        public System.Windows.Forms.Button agregarform2;
+        public System.Windows.Forms.Button button6;
         public System.Windows.Forms.Button limpiarform2;
         public System.Windows.Forms.Button borrarform2;
         public System.Windows.Forms.TextBox textBox4;

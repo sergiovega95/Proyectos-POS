@@ -13,6 +13,8 @@ namespace VentanaLogin2
 {
     public partial class Vusuarios : Form
     {
+        string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+
         public Vusuarios()
         {
             InitializeComponent();
@@ -38,22 +40,21 @@ namespace VentanaLogin2
             }
 
             //Conexion y peticiòn de escritura a la base de datos , con los datos de un nuevo usuario
-
-            string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
-            SqlConnection conexion = new SqlConnection(database);
-            conexion.Open();
             string peticion_escritura_usuario = "insert into tabla_usuarios (Usuario,Contraseña,Seguridad,Nombre,Apellido) values('" + usuario + "','" + contraseña + "','" + seguridad + "','" + nombre + "','" + apellido + "') ";
-            SqlCommand comando = new SqlCommand(peticion_escritura_usuario, conexion);
-            comando.ExecuteNonQuery();
-            MessageBox.Show("Se agrego Correctamente el nuevo usuario");
-            conexion.Close();
+            clase_escritura consulta = new clase_escritura();
+            int resultado = consulta.escribir(database, peticion_escritura_usuario);
 
-            //Limpio para agregar un nuevo usuario
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox4.Clear();
-            textBox5.Clear();
+            if (resultado>0)
+            {
+                //Mensaje para mostrar al usuario Limpio para agregar un nuevo usuario
+                MessageBox.Show("Se agrego Correctamente el nuevo usuario");
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                textBox4.Clear();
+                textBox5.Clear();
+            }
+                    
         }
 
         private void button2_Click(object sender, EventArgs e)

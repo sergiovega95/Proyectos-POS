@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace VentanaLogin2
 {
+   
     public partial class Vpagar : Form
     {
-       
+        string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+
 
         public Vpagar()
         {
@@ -26,9 +28,8 @@ namespace VentanaLogin2
             Vproducto ventanaproducto = new Vproducto();
             total = (ventanaproducto.sumatotal)-(ventanaproducto.sumatotal*ventanaproducto.descuento);            
             pagacon = Convert.ToDouble(textBox3.Text);
-            
 
-
+          
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -58,6 +59,27 @@ namespace VentanaLogin2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Vproducto Ventanaproducto = new Vproducto();
+            int numero_filas = Ventanaproducto.dataGridView_tabla.RowCount;
+            MessageBox.Show(Convert.ToString(numero_filas));
+
+            for (int i = 0; i < numero_filas; i++)
+            {
+                string codigo_producto =(string)Ventanaproducto.dataGridView_tabla.Rows[i].Cells[0].Value;
+                string cantidad_productos_vendidos = (string)Ventanaproducto.dataGridView_tabla.Rows[i].Cells[3].Value;
+
+                string peticion_stock_actual = "Select Stock from tabla_productos where Codigo=" + codigo_producto + "";
+
+                clase_lectura leer = new clase_lectura();
+                string stock_actual = leer.leer_un_dato(database, peticion_stock_actual);
+
+                int stock_nuevo = Convert.ToInt32(stock_actual)-Convert.ToInt32(cantidad_productos_vendidos);
+
+                string peticion_modificar_stock = "update tabla_productos set Stock = " + Convert.ToString(stock_nuevo)+" where Codigo= "+codigo_producto+" ";
+                clase_escritura consulta = new clase_escritura();
+                int resultado= consulta.escribir(database, peticion_modificar_stock);
+            }
+            
             //Vuelvo a la pantalla principal despues de pagar y cierro la de pago
             Vproducto ventanaproducto = new Vproducto();
             ventanaproducto.button6.Enabled = false;

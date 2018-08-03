@@ -617,6 +617,8 @@ namespace VentanaLogin2 {
             
             private global::System.Data.DataColumn columnPrecio;
             
+            private global::System.Data.DataColumn columnStock;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public tabla_productosDataTable() {
@@ -676,6 +678,14 @@ namespace VentanaLogin2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn StockColumn {
+                get {
+                    return this.columnStock;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -711,12 +721,13 @@ namespace VentanaLogin2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tabla_productosRow Addtabla_productosRow(string Nombre, double Precio) {
+            public tabla_productosRow Addtabla_productosRow(string Nombre, double Precio, int Stock) {
                 tabla_productosRow rowtabla_productosRow = ((tabla_productosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Nombre,
-                        Precio};
+                        Precio,
+                        Stock};
                 rowtabla_productosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtabla_productosRow);
                 return rowtabla_productosRow;
@@ -749,6 +760,7 @@ namespace VentanaLogin2 {
                 this.columnCodigo = base.Columns["Codigo"];
                 this.columnNombre = base.Columns["Nombre"];
                 this.columnPrecio = base.Columns["Precio"];
+                this.columnStock = base.Columns["Stock"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -760,6 +772,8 @@ namespace VentanaLogin2 {
                 base.Columns.Add(this.columnNombre);
                 this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrecio);
+                this.columnStock = new global::System.Data.DataColumn("Stock", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStock);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCodigo}, true));
                 this.columnCodigo.AutoIncrement = true;
@@ -771,6 +785,7 @@ namespace VentanaLogin2 {
                 this.columnNombre.AllowDBNull = false;
                 this.columnNombre.MaxLength = 50;
                 this.columnPrecio.AllowDBNull = false;
+                this.columnStock.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1279,6 +1294,17 @@ namespace VentanaLogin2 {
                 }
                 set {
                     this[this.tabletabla_productos.PrecioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Stock {
+                get {
+                    return ((int)(this[this.tabletabla_productos.StockColumn]));
+                }
+                set {
+                    this[this.tabletabla_productos.StockColumn] = value;
                 }
             }
         }
@@ -1833,33 +1859,39 @@ namespace VentanaLogin2.dbPOSDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Codigo", "Codigo");
             tableMapping.ColumnMappings.Add("Nombre", "Nombre");
             tableMapping.ColumnMappings.Add("Precio", "Precio");
+            tableMapping.ColumnMappings.Add("Stock", "Stock");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[tabla_productos] WHERE (([Codigo] = @Original_Codigo) AND ([No" +
-                "mbre] = @Original_Nombre) AND ([Precio] = @Original_Precio))";
+                "mbre] = @Original_Nombre) AND ([Precio] = @Original_Precio) AND ([Stock] = @Orig" +
+                "inal_Stock))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Codigo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nombre", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Precio", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Precio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Stock", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Stock", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[tabla_productos] ([Nombre], [Precio]) VALUES (@Nombre, @Precio" +
-                ");\r\nSELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = SCOPE_IDE" +
-                "NTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[tabla_productos] ([Nombre], [Precio], [Stock]) VALUES (@Nombre" +
+                ", @Precio, @Stock);\r\nSELECT Codigo, Nombre, Precio, Stock FROM tabla_productos W" +
+                "HERE (Codigo = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nombre", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Precio", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Precio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Stock", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Stock", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[tabla_productos] SET [Nombre] = @Nombre, [Precio] = @Precio WHERE (([Codigo] = @Original_Codigo) AND ([Nombre] = @Original_Nombre) AND ([Precio] = @Original_Precio));
-SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[tabla_productos] SET [Nombre] = @Nombre, [Precio] = @Precio, [Stock] = @Stock WHERE (([Codigo] = @Original_Codigo) AND ([Nombre] = @Original_Nombre) AND ([Precio] = @Original_Precio) AND ([Stock] = @Original_Stock));
+SELECT Codigo, Nombre, Precio, Stock FROM tabla_productos WHERE (Codigo = @Codigo)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nombre", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Precio", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Precio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Stock", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Stock", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Codigo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nombre", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Precio", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Precio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Stock", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Stock", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -1877,7 +1909,7 @@ SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Codigo, Nombre, Precio FROM dbo.tabla_productos";
+            this._commandCollection[0].CommandText = "SELECT Codigo, Nombre, Precio,Stock FROM dbo.tabla_productos";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1938,7 +1970,7 @@ SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Codigo, string Original_Nombre, double Original_Precio) {
+        public virtual int Delete(int Original_Codigo, string Original_Nombre, double Original_Precio, int Original_Stock) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Codigo));
             if ((Original_Nombre == null)) {
                 throw new global::System.ArgumentNullException("Original_Nombre");
@@ -1947,6 +1979,7 @@ SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Nombre));
             }
             this.Adapter.DeleteCommand.Parameters[2].Value = ((double)(Original_Precio));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_Stock));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1967,7 +2000,7 @@ SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Nombre, double Precio) {
+        public virtual int Insert(string Nombre, double Precio, int Stock) {
             if ((Nombre == null)) {
                 throw new global::System.ArgumentNullException("Nombre");
             }
@@ -1975,6 +2008,7 @@ SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Nombre));
             }
             this.Adapter.InsertCommand.Parameters[1].Value = ((double)(Precio));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Stock));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1995,7 +2029,7 @@ SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Nombre, double Precio, int Original_Codigo, string Original_Nombre, double Original_Precio, int Codigo) {
+        public virtual int Update(string Nombre, double Precio, int Stock, int Original_Codigo, string Original_Nombre, double Original_Precio, int Original_Stock, int Codigo) {
             if ((Nombre == null)) {
                 throw new global::System.ArgumentNullException("Nombre");
             }
@@ -2003,15 +2037,17 @@ SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Nombre));
             }
             this.Adapter.UpdateCommand.Parameters[1].Value = ((double)(Precio));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Codigo));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Stock));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Codigo));
             if ((Original_Nombre == null)) {
                 throw new global::System.ArgumentNullException("Original_Nombre");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Nombre));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Nombre));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(Original_Precio));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Codigo));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(Original_Precio));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Stock));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Codigo));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2032,8 +2068,8 @@ SELECT Codigo, Nombre, Precio FROM tabla_productos WHERE (Codigo = @Codigo)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Nombre, double Precio, int Original_Codigo, string Original_Nombre, double Original_Precio) {
-            return this.Update(Nombre, Precio, Original_Codigo, Original_Nombre, Original_Precio, Original_Codigo);
+        public virtual int Update(string Nombre, double Precio, int Stock, int Original_Codigo, string Original_Nombre, double Original_Precio, int Original_Stock) {
+            return this.Update(Nombre, Precio, Stock, Original_Codigo, Original_Nombre, Original_Precio, Original_Stock, Original_Codigo);
         }
     }
     

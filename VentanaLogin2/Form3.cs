@@ -95,7 +95,7 @@ namespace VentanaLogin2
             //string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
             SqlConnection conexion = new SqlConnection(database);
             conexion.Open();
-            string peticion_lectura_filtro = "select Codigo,Nombre,Precio from tabla_productos where Nombre like '" + filtro + "%' ";
+            string peticion_lectura_filtro = "select Codigo,Nombre,Precio,Stock from tabla_productos where Nombre like '" + filtro + "%' ";
             SqlCommand comando = new SqlCommand(peticion_lectura_filtro, conexion);
             comando.ExecuteNonQuery();
 

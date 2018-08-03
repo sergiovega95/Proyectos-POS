@@ -31,12 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Vnuevoproducto));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tablaproductosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dbPOSDataSet = new VentanaLogin2.dbPOSDataSet();
-            this.tabla_productosTableAdapter = new VentanaLogin2.dbPOSDataSetTableAdapters.tabla_productosTableAdapter();
             this.label5 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -53,11 +47,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tablaproductosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbPOSDataSet = new VentanaLogin2.dbPOSDataSet();
+            this.tabla_productosTableAdapter = new VentanaLogin2.dbPOSDataSetTableAdapters.tabla_productosTableAdapter();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -69,48 +70,14 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoDataGridViewTextBoxColumn,
             this.nombreDataGridViewTextBoxColumn,
-            this.precioDataGridViewTextBoxColumn});
+            this.precioDataGridViewTextBoxColumn,
+            this.Stock});
             this.dataGridView1.DataSource = this.tablaproductosBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 278);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 36);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(333, 180);
+            this.dataGridView1.Size = new System.Drawing.Size(333, 177);
             this.dataGridView1.TabIndex = 14;
-            // 
-            // codigoDataGridViewTextBoxColumn
-            // 
-            this.codigoDataGridViewTextBoxColumn.DataPropertyName = "Codigo";
-            this.codigoDataGridViewTextBoxColumn.HeaderText = "Codigo";
-            this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
-            this.codigoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // precioDataGridViewTextBoxColumn
-            // 
-            this.precioDataGridViewTextBoxColumn.DataPropertyName = "Precio";
-            this.precioDataGridViewTextBoxColumn.HeaderText = "Precio";
-            this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
-            this.precioDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tablaproductosBindingSource
-            // 
-            this.tablaproductosBindingSource.DataMember = "tabla_productos";
-            this.tablaproductosBindingSource.DataSource = this.dbPOSDataSet;
-            // 
-            // dbPOSDataSet
-            // 
-            this.dbPOSDataSet.DataSetName = "dbPOSDataSet";
-            this.dbPOSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tabla_productosTableAdapter
-            // 
-            this.tabla_productosTableAdapter.ClearBeforeFill = true;
             // 
             // label5
             // 
@@ -269,11 +236,54 @@
             this.panel2.Controls.Add(this.textBox4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Location = new System.Drawing.Point(12, 241);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(341, 270);
             this.panel2.TabIndex = 40;
+            // 
+            // codigoDataGridViewTextBoxColumn
+            // 
+            this.codigoDataGridViewTextBoxColumn.DataPropertyName = "Codigo";
+            this.codigoDataGridViewTextBoxColumn.HeaderText = "Codigo";
+            this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
+            this.codigoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // precioDataGridViewTextBoxColumn
+            // 
+            this.precioDataGridViewTextBoxColumn.DataPropertyName = "Precio";
+            this.precioDataGridViewTextBoxColumn.HeaderText = "Precio";
+            this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
+            this.precioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tablaproductosBindingSource
+            // 
+            this.tablaproductosBindingSource.DataMember = "tabla_productos";
+            this.tablaproductosBindingSource.DataSource = this.dbPOSDataSet;
+            // 
+            // dbPOSDataSet
+            // 
+            this.dbPOSDataSet.DataSetName = "dbPOSDataSet";
+            this.dbPOSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tabla_productosTableAdapter
+            // 
+            this.tabla_productosTableAdapter.ClearBeforeFill = true;
+            // 
+            // Stock
+            // 
+            this.Stock.DataPropertyName = "Stock";
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
             // 
             // Vnuevoproducto
             // 
@@ -283,7 +293,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -293,12 +302,12 @@
             this.Text = "Nuevo Producto";
             this.Load += new System.EventHandler(this.Vnuevoproducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,5 +337,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
     }
 }

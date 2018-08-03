@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 
 namespace VentanaLogin2
-{
+    {
+
     public partial class Vproducto : Form
     {
         //Definición de las variables globales que deseo que conozcan todo el form
@@ -20,8 +21,8 @@ namespace VentanaLogin2
         double impuesto=0.19;
         public double descuento = 0.0;
         public double sumatotal = 0.0;
-                
         
+
         public Vproducto()
         {
             InitializeComponent();
@@ -29,9 +30,8 @@ namespace VentanaLogin2
             //Inicializacion del Timer que me permite mostrar la hora y fecha
             timer1.Enabled = true;
             textBox3.Text = "0";
-                           
-
-         }
+            
+        }
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -302,7 +302,7 @@ namespace VentanaLogin2
 
             textBox5.Text = "9";
             textBox6.Text = "1";
-            comboBox1.Text = "Huevo Kikes ";
+            comboBox1.Text = "Huevo Kikes";
            
         }
 
@@ -499,13 +499,17 @@ namespace VentanaLogin2
                 totalproductos = valor2[p] + totalproductos;
             }
 
-            //instancio y llamo la ventana de pago ademas de compartirle el valor total a pagar 
-            // y la suma de la cantidad de productos en el datagridview
+           
 
-            Vpagar ventanapagar = new Vpagar();
+        //instancio y llamo la ventana de pago ademas de compartirle el valor total a pagar 
+        // y la suma de la cantidad de productos en el datagridview
+
+        Vpagar ventanapagar = new Vpagar();
             ventanapagar.textBox1.Text =textBox4.Text ;
             ventanapagar.textBox2.Text = Convert.ToString(totalproductos);
-            ventanapagar.Show();
+            ventanapagar.Show();                 
+
+
             
         }
 

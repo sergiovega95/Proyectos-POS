@@ -48,76 +48,138 @@ namespace VentanaLogin2
                 return;
             }
 
+
             string producto_elegido = comboBox1.Text;
             string peticion_lectura_precio = "select Precio from tabla_productos where Nombre = '" + producto_elegido + "' ";
             clase_lectura leer = new clase_lectura();
             string precio_producto = leer.leer_un_dato(database, peticion_lectura_precio);
 
-                           
-                    //instanciación de la datagridwiew para crear filas
+            Int32 numero_filas = dataGridView_tabla.Rows.Count;
+            int numero_fila = 0;
+            int bandera = 0;
 
-                    DataGridViewRow fila = new DataGridViewRow();
-                    dataGridView_tabla.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    double aux2, aux3;
+            for (int a = 0; a <numero_filas; a++)
+            {
+                string codigo_actual = (string)dataGridView_tabla.Rows[a].Cells[0].Value;
+                
+                if (codigo_actual == textBox5.Text)
+                {
+                    numero_fila = a;
+                    bandera = 1;
+                    
 
-                    aux2 = Convert.ToDouble(textBox6.Text);
-                    aux3 = Convert.ToDouble(precio_producto);
-                    valortotal = aux2 * aux3;
+                }
 
-                    //Agrego los datos a la datagridview
+               
+            }
 
-                    fila.CreateCells(dataGridView_tabla);
-                    fila.Cells[0].Value = textBox5.Text;
-                    fila.Cells[1].Value = comboBox1.Text;
-                    fila.Cells[2].Value = precio_producto;
-                    fila.Cells[3].Value = textBox6.Text;
-                    fila.Cells[4].Value = Convert.ToString(valortotal);
+         
+            if (bandera == 1) {
 
-                    dataGridView_tabla.Rows.Add(fila);
+                dataGridView_tabla.Rows[numero_fila].Cells[3].Value = Convert.ToString(Convert.ToInt32((string)dataGridView_tabla.Rows[numero_fila].Cells[3].Value) + Convert.ToInt32(textBox6.Text));
+                double aux3 = Convert.ToDouble(dataGridView_tabla.Rows[numero_fila].Cells[3].Value);
+                double aux4 = Convert.ToDouble(precio_producto);
+                valortotal = aux3 * aux4;
+                dataGridView_tabla.Rows[numero_fila].Cells[4].Value = Convert.ToString(valortotal);
+                
+                Int32 index = dataGridView_tabla.Rows.Count;
+                double sumatotal = 0.0;
+                double[] valor2 = new double[index];
+                double aux;
 
-                    //Refresco las textbox para ingresar nuevo datos
+                for (int a = 0; a < index; a++)
+                {
 
-                    textBox5.Clear();
-                    textBox6.Clear();
-                    comboBox1.Text = "";
+                    string valor = (string)dataGridView_tabla.Rows[a].Cells[4].Value;
+                    aux = Convert.ToDouble(valor);
+                    valor2[a] = aux;
 
-                    //Logica para mostrar la sumatotal del precio de los productos
+                }
 
-                    Int32 index = dataGridView_tabla.Rows.Count;
-                    totalizar sumar = new totalizar();
-                    double sumatotal = 0.0;
-                    //sumatotal =sumar.total(index);
-                    //MessageBox.Show(Convert.ToString(sumatotal));
-
-
-                    double[] valor2 = new double[index];
-                    //double sumatotal = 0.0;
-                    double aux;
-
-                    for (int a = 0; a < index; a++)
-                    {
-
-                        string valor = (string)dataGridView_tabla.Rows[a].Cells[4].Value;
-                        aux = Convert.ToDouble(valor);
-                        valor2[a] = aux;
-
-                    }
-
-                    for (int p = 0; p < index; p++)
-                    {
-                        sumatotal = valor2[p] + sumatotal;
-                    }
+                for (int p = 0; p < index; p++)
+                {
+                    sumatotal = valor2[p] + sumatotal;
+                }
 
 
-                    //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs                       
+                //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs                       
 
-                    textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
-                    textBox2.Text = Convert.ToString(sumatotal * impuesto);
-                    textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
-                    label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
-                    textBox5.Focus();                        
-                             
-                      
+                textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
+                textBox2.Text = Convert.ToString(sumatotal * impuesto);
+                textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
+                label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
+                textBox5.Focus();
+
+                textBox5.Clear();
+                textBox6.Clear();
+                comboBox1.Text = "";
+
+            }
+
+            else if (bandera != 1)
+            {
+                
+                //instanciación de la datagridwiew para crear filas
+
+                DataGridViewRow fila = new DataGridViewRow();
+                dataGridView_tabla.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                double aux2, aux3;
+
+                aux2 = Convert.ToDouble(textBox6.Text);
+                aux3 = Convert.ToDouble(precio_producto);
+                valortotal = aux2 * aux3;
+
+                //Agrego los datos a la datagridview
+
+                fila.CreateCells(dataGridView_tabla);
+                fila.Cells[0].Value = textBox5.Text;
+                fila.Cells[1].Value = comboBox1.Text;
+                fila.Cells[2].Value = precio_producto;
+                fila.Cells[3].Value = textBox6.Text;
+                fila.Cells[4].Value = Convert.ToString(valortotal);
+                dataGridView_tabla.Rows.Add(fila);
+
+                //Refresco las textbox para ingresar nuevo datos
+
+                textBox5.Clear();
+                textBox6.Clear();
+                comboBox1.Text = "";
+
+                //Logica para mostrar la sumatotal del precio de los productos
+
+                Int32 index = dataGridView_tabla.Rows.Count;
+                double sumatotal = 0.0;
+                double[] valor2 = new double[index];
+                //double sumatotal = 0.0;
+                double aux;
+
+                for (int a = 0; a < index; a++)
+                {
+
+                    string valor = (string)dataGridView_tabla.Rows[a].Cells[4].Value;
+                    aux = Convert.ToDouble(valor);
+                    valor2[a] = aux;
+
+                }
+
+                for (int p = 0; p < index; p++)
+                {
+                    sumatotal = valor2[p] + sumatotal;
+                }
+
+
+                //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs                       
+
+                textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
+                textBox2.Text = Convert.ToString(sumatotal * impuesto);
+                textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
+                label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
+                textBox5.Focus();
+
+
+
+            }
+
 
         }
 

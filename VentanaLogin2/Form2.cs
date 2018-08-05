@@ -27,19 +27,17 @@ namespace VentanaLogin2
         public Vproducto()
         {
             InitializeComponent();
-
             //Inicializacion del Timer que me permite mostrar la hora y fecha
             timer1.Enabled = true;
             textBox3.Text = "0";
-            Int32 numero_filas = dataGridView_tabla.Rows.Count;
+            //Int32 numero_filas = dataGridView_tabla.Rows.Count;
 
 
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-
-
+            
             descuento = (Convert.ToDouble(textBox3.Text)) / 100;
 
 
@@ -60,12 +58,16 @@ namespace VentanaLogin2
             int numero_fila = 0;
             int bandera = 0;
 
+            //Este for recorre toda las filas de el datagridview_tabla y me busca si el ultimo
+            //producto que agrege ya existe en la tabla , para asi solo sumar sus cantidades
+
             for (int a = 0; a < numero_filas; a++)
             {
                 string codigo_actual = (string)dataGridView_tabla.Rows[a].Cells[0].Value;
 
                 if (codigo_actual == textBox5.Text)
                 {
+                    //MessageBox.Show("El articulo ya existe en la tabla");
                     numero_fila = a;
                     bandera = 1;
 
@@ -75,40 +77,25 @@ namespace VentanaLogin2
 
             if (bandera == 1) {
 
+                //Logica para sumar cantidades de productos iguales
                 dataGridView_tabla.Rows[numero_fila].Cells[3].Value = Convert.ToString(Convert.ToInt32((string)dataGridView_tabla.Rows[numero_fila].Cells[3].Value) + Convert.ToInt32(textBox6.Text));
                 double aux3 = Convert.ToDouble(dataGridView_tabla.Rows[numero_fila].Cells[3].Value);
                 double aux4 = Convert.ToDouble(precio_producto);
                 valortotal = aux3 * aux4;
                 dataGridView_tabla.Rows[numero_fila].Cells[4].Value = Convert.ToString(valortotal);
 
-                //Int32 index = dataGridView_tabla.Rows.Count;
-                double sumatotal = 0.0;
-                double[] valor2 = new double[numero_filas];
-                double aux;
 
-                for (int a = 0; a < numero_filas; a++)
-                {
-
-                    string valor = (string)dataGridView_tabla.Rows[a].Cells[4].Value;
-                    aux = Convert.ToDouble(valor);
-                    valor2[a] = aux;
-
-                }
-
-                for (int p = 0; p < numero_filas; p++)
-                {
-                    sumatotal = valor2[p] + sumatotal;
-                }
-
+                //Clase que me entrega el total, subtotal, impuesto ,descuento 
+                Totalizar resultado = new Totalizar(dt);
+                textBox1.Text = resultado.subtotal(impuesto);
+                textBox2.Text = resultado.impuesto(impuesto);
+                textBox4.Text = resultado.sumatotal(descuento);
+                label25.Text = resultado.sumatotal(descuento);
+                textBox5.Focus();
 
                 //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs                       
 
-                textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
-                textBox2.Text = Convert.ToString(sumatotal * impuesto);
-                textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
-                label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
                 textBox5.Focus();
-
                 textBox5.Clear();
                 textBox6.Clear();
                 comboBox1.Text = "";
@@ -117,7 +104,7 @@ namespace VentanaLogin2
 
             else if (bandera != 1)
             {
-                //instanciación de la datagridwiew para crear filas
+                //MessageBox.Show("El articulo se agrega por primera vez");
 
                 double aux2, aux3;
                 aux2 = Convert.ToDouble(textBox6.Text);
@@ -137,34 +124,21 @@ namespace VentanaLogin2
                 textBox6.Clear();
                 comboBox1.Text = "";
 
-                //Logica para mostrar la sumatotal del precio de los productos
+                //Clase que me entrega el total a pagar
 
-                Int32 index = dataGridView_tabla.Rows.Count;
-                double sumatotal = 0.0;
-                double[] valor2 = new double[index];
-                double aux;
+                Totalizar resultado = new Totalizar(dt);
+                textBox1.Text = resultado.subtotal(impuesto);
+                textBox2.Text = resultado.impuesto(impuesto);
+                textBox4.Text = resultado.sumatotal(descuento);
+                label25.Text = resultado.sumatotal(descuento);
+                textBox5.Focus();
 
-                for (int a = 0; a < index; a++)
-                {
-
-                    string valor = (string)dataGridView_tabla.Rows[a].Cells[4].Value;
-                    aux = Convert.ToDouble(valor);
-                    valor2[a] = aux;
-
-                }
-
-                for (int p = 0; p < index; p++)
-                {
-                    sumatotal = valor2[p] + sumatotal;
-                }
 
 
                 //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs                       
-                textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
-                textBox2.Text = Convert.ToString(sumatotal * impuesto);
-                textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
-                label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
-                textBox5.Focus();
+
+
+
 
             }
 
@@ -174,7 +148,7 @@ namespace VentanaLogin2
         private void timer1_Tick(object sender, EventArgs e)
         {
             //muestro la Hora del sistema en un simple label
-            Hora.Text = DateTime.Now.ToString("G");
+            lblhora.Text = DateTime.Now.ToString("G");
         }
 
         private void label17_Click(object sender, EventArgs e)
@@ -196,7 +170,7 @@ namespace VentanaLogin2
         {
             //Limpio todos los campos del form , tanto los textbox como la datagridview
 
-            dataGridView_tabla.Rows.Clear();
+            dt.Clear();
             textBox1.Text = "0";
             textBox2.Text = "0";
             textBox4.Text = "0";
@@ -210,8 +184,7 @@ namespace VentanaLogin2
             borrarform2.Enabled = true;
 
             textBox5.Focus();
-
-
+            
         }
 
         private void pictureBox_aguila_Click(object sender, EventArgs e)
@@ -306,47 +279,24 @@ namespace VentanaLogin2
 
         private void button8_Click(object sender, EventArgs e)
         {
-            descuento = (Convert.ToDouble(textBox3.Text)) / 100;
+            //descuento = (Convert.ToDouble(textBox3.Text)) / 100;
 
             try {
 
-                int actualnumero_filas = dataGridView_tabla.SelectedRows[0].Index;
-                Int32 numero_filas = dataGridView_tabla.Rows.Count - 1;
-                double[] valor2 = new double[numero_filas];
-                double sumatotal = 0.0;
-                double aux;
+                int fila_seleccionada = dataGridView_tabla.SelectedRows[0].Index;
+                
+                dataGridView_tabla.Rows.RemoveAt(fila_seleccionada); //Remuevo la fila seleccionada del datagridview
 
 
-                dataGridView_tabla.Rows.RemoveAt(actualnumero_filas); //Remuevo la fila seleccionada del datagridview
+                //Clase que me entrega el total a pagar , la tengo que llamar para que 
+                //recalcule el total despues de haber borrado un articulo
 
-
-                //Misma logica para volver a calcular la suma del precio total de todos los productos
-                //despues de haber borrado y/o eliminado alguno
-
-                for (int i = 0; i < numero_filas; i++)
-                {
-
-                    string valor = (string)dataGridView_tabla.Rows[i].Cells[4].Value;
-                    aux = Convert.ToDouble(valor);
-                    valor2[i] = aux;
-
-                }
-
-                for (int p = 0; p < numero_filas; p++)
-                {
-                    sumatotal = valor2[p] + sumatotal;
-                }
-
-
-                //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs    
-
-                textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
-                textBox2.Text = Convert.ToString(sumatotal * impuesto);
-                textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
-                label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
-
+                Totalizar resultado = new Totalizar(dt);
+                textBox1.Text = resultado.subtotal(impuesto);
+                textBox2.Text = resultado.impuesto(impuesto);
+                textBox4.Text = resultado.sumatotal(descuento);
+                label25.Text = resultado.sumatotal(descuento);
                 textBox5.Focus();
-
             }
 
             catch
@@ -430,77 +380,42 @@ namespace VentanaLogin2
         {
             //Aplico el descuento ingresado
 
-            Int32 numero_filas = dataGridView_tabla.Rows.Count;
-            double[] valor2 = new double[numero_filas];
-            double sumatotal = 0.0;
-            double aux;
-
-            //Vuelvo a aplicar la logica para sumar los precios de los productos 
-            //despues de haber aplicado el descuento
-
-            for (int i = 0; i < numero_filas; i++)
-            {
-
-                string valor = (string)dataGridView_tabla.Rows[i].Cells[4].Value;
-                aux = Convert.ToDouble(valor);
-                valor2[i] = aux;
-
-            }
-
-            for (int p = 0; p < numero_filas; p++)
-            {
-                sumatotal = valor2[p] + sumatotal;
-            }
-
-            //Visualización de el subtotal , el impuesto y el total a pagar en los textboxs    
-
             descuento = (Convert.ToDouble(textBox3.Text)) / 100;
-            textBox1.Text = Convert.ToString(sumatotal - (sumatotal * impuesto));
-            textBox2.Text = Convert.ToString(sumatotal * impuesto);
-            textBox4.Text = Convert.ToString((sumatotal - (sumatotal * descuento)));
-            label25.Text = Convert.ToString("$ " + (sumatotal - (sumatotal * descuento)));
+
+
+            //Clase que me entrega el total a pagar , la tengo que llamar para que 
+            //recalcule el total despues de haber aplicado el descuento 
+
+            Totalizar resultado = new Totalizar(dt);
+            textBox1.Text = resultado.subtotal(impuesto);
+            textBox2.Text = resultado.impuesto(impuesto);
+            textBox4.Text = resultado.sumatotal(descuento);
+            label25.Text = resultado.sumatotal(descuento);
+            textBox5.Focus();
 
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            //llamo la misma clase Totalizar pero esta vez con el metodo que me devuelve la 
+            // cantidad de productos comprados
 
-            Int32 numero_filas = dataGridView_tabla.Rows.Count;
-            double[] valor2 = new double[numero_filas];
-            double totalproductos = 0.0;
-            double aux;
-
-            //aplico una logica similar pero esta vez para sumar la cantidad de productos
-            //agregados al datagridview
-
-            for (int i = 0; i < numero_filas; i++)
-            {
-
-                string valor = (string)dataGridView_tabla.Rows[i].Cells[3].Value;
-                aux = Convert.ToDouble(valor);
-                valor2[i] = aux;
-
-            }
-
-            for (int p = 0; p < numero_filas; p++)
-            {
-                totalproductos = valor2[p] + totalproductos;
-            }
-
+            Totalizar resultado = new Totalizar(dt);
+            double total_productos_comprados = resultado.cantidad_de_productos();
+                           
             //instancio y llamo la ventana de pago ademas de compartirle el valor total a pagar 
             // y la suma de la cantidad de productos en el datagridview
 
             Vpagar ventanapagar = new Vpagar(dt);
             ventanapagar.textBox1.Text = textBox4.Text;
+            ventanapagar.textBox2.Text = Convert.ToString(total_productos_comprados);
+
             ventanapagar.Subtotal=  textBox1.Text;
             ventanapagar.Impuesto = textBox2.Text;
             ventanapagar.Descuento = textBox3.Text;
             ventanapagar.Totalpago = textBox4.Text;
-            //ventanapagar.textBox2.Text = Convert.ToString(totalproductos);
             ventanapagar.ShowDialog();
-           
-            //ventanapagar.Show();
-
+                       
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -512,13 +427,14 @@ namespace VentanaLogin2
             //this.Close();
 
         }
-
-
+        
         private void Vproducto_Load(object sender, EventArgs e)
         {
-            textBox5.Focus();
+            //Todo lo de este evento  se ejecuta apenas el formulario se carga
 
-            // cargo todos los productos de la base de datos en el combobox1 apenas se carga el fomulario
+             textBox5.Focus();
+
+           // cargo todos los productos de la base de datos en el combobox1 apenas se carga el fomulario
 
             string peticion_lectura = "select Codigo,Nombre from tabla_productos";
             SqlConnection conexion = new SqlConnection(database);
@@ -536,13 +452,9 @@ namespace VentanaLogin2
             registros.Close();
             conexion.Close();
 
+                   
 
-            //Borro ultima factura
-
-            string borrar_ultima_factura = "delete from tabla_factura";
-            clase_escritura consulta = new clase_escritura();
-            consulta.escribir(database, borrar_ultima_factura);
-
+            //Creo el datatable que me va a almacenar los datos del datagridview_tabla
             dt = new DataTable();
             dt.Columns.Add("Codigo");
             dt.Columns.Add("Detalle");
@@ -551,6 +463,13 @@ namespace VentanaLogin2
             dt.Columns.Add("Valor Total");
             dataGridView_tabla.DataSource = dt;
 
+
+            //Borro la ultima factura
+
+            string borrar_ultima_factura = "delete from tabla_factura";
+            clase_escritura consulta = new clase_escritura();
+            consulta.escribir(database, borrar_ultima_factura);
+                        
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -613,47 +532,5 @@ namespace VentanaLogin2
 
         
     
-
-    private void button_prueba_Click(object sender, EventArgs e)
-    {
-         
-        ////Verifico si tengo campos vacios en el datagridview
-        //if (dataGridView_tabla.Rows.Count == 0)
-        //{
-        //    MessageBox.Show("No existen campos para imprimir una factura");
-
-        //}
-        //else
-
-        //{
-        //    SqlConnection conexion = new SqlConnection(database);
-        //    conexion.Open();
-        //    string inserta_producto_vendidos = "insert into tabla_Ventas(id_factura,Codigo,Detalle,ValorUnitario,Cantidad,ValorTotal) values(@id_factura,@Codigo,@Detalle,@ValorUnitario,@Cantidad,@ValorTotal) ";
-        //    SqlCommand comando = new SqlCommand(inserta_producto_vendidos, conexion);
-
-        //    foreach (DataGridViewRow row in dataGridView_tabla.Rows)
-        //    {
-        //        comando.Parameters.Clear();
-        //        comando.Parameters.AddWithValue("@id_factura", textBox7.Text);
-        //        comando.Parameters.AddWithValue("@Codigo", Convert.ToString(row.Cells["Codigo"].Value));
-        //        comando.Parameters.AddWithValue("@Detalle", Convert.ToString(row.Cells["Detalle"].Value));
-        //        comando.Parameters.AddWithValue("@ValorUnitario", Convert.ToString(row.Cells["ValorUnitario"].Value));
-        //        comando.Parameters.AddWithValue("@Cantidad", Convert.ToString(row.Cells["Cantidad"].Value));
-        //        comando.Parameters.AddWithValue("@ValorTotal", Convert.ToString(row.Cells["Valor_Total"].Value));
-        //        comando.ExecuteNonQuery();
-        //    }
-        //    conexion.Close();
-
-        //    string inserta_totales = "insert into tabla_facturas(id_factura,Subtotal,Impuesto,Descuento,Totalpago) values(" + textBox7.Text + "," + textBox1.Text + "," + textBox2.Text + "," + textBox3.Text + "," + textBox4.Text + ") ";
-        //    clase_escritura consulta = new clase_escritura();
-        //    consulta.escribir(database, inserta_totales);
-
-
-
-
-        //    }
-        }                                        
-
-
     }
 }

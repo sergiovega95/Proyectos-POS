@@ -67,12 +67,12 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridView_tabla = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.pagarform2 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button_prueba = new System.Windows.Forms.Button();
-            this.dataGridView_tabla = new System.Windows.Forms.DataGridView();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -82,12 +82,12 @@
             this.label14 = new System.Windows.Forms.Label();
             this.limpiarform2 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.Hora = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.borrarform2 = new System.Windows.Forms.Button();
             this.lblfactura = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblhora = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -101,8 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_aguila)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tabla)).BeginInit();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -513,6 +513,18 @@
             this.panel3.Size = new System.Drawing.Size(539, 232);
             this.panel3.TabIndex = 2;
             // 
+            // dataGridView_tabla
+            // 
+            this.dataGridView_tabla.AllowUserToAddRows = false;
+            this.dataGridView_tabla.AllowUserToDeleteRows = false;
+            this.dataGridView_tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_tabla.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_tabla.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_tabla.Name = "dataGridView_tabla";
+            this.dataGridView_tabla.ReadOnly = true;
+            this.dataGridView_tabla.Size = new System.Drawing.Size(537, 230);
+            this.dataGridView_tabla.TabIndex = 0;
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(438, 14);
@@ -544,10 +556,6 @@
             this.panel5.Size = new System.Drawing.Size(538, 46);
             this.panel5.TabIndex = 4;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // button_prueba
             // 
             this.button_prueba.Location = new System.Drawing.Point(8, 16);
@@ -556,23 +564,14 @@
             this.button_prueba.TabIndex = 9;
             this.button_prueba.Text = "button2";
             this.button_prueba.UseVisualStyleBackColor = true;
-            this.button_prueba.Click += new System.EventHandler(this.button_prueba_Click);
             // 
-            // dataGridView_tabla
+            // timer1
             // 
-            this.dataGridView_tabla.AllowUserToAddRows = false;
-            this.dataGridView_tabla.AllowUserToDeleteRows = false;
-            this.dataGridView_tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_tabla.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_tabla.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_tabla.Name = "dataGridView_tabla";
-            this.dataGridView_tabla.ReadOnly = true;
-            this.dataGridView_tabla.Size = new System.Drawing.Size(537, 230);
-            this.dataGridView_tabla.TabIndex = 0;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(241, 77);
+            this.button6.Location = new System.Drawing.Point(233, 82);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(91, 21);
             this.button6.TabIndex = 0;
@@ -584,15 +583,15 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(292, 39);
+            this.comboBox1.Location = new System.Drawing.Point(268, 41);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(202, 21);
+            this.comboBox1.Size = new System.Drawing.Size(266, 21);
             this.comboBox1.TabIndex = 10;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(61, 39);
+            this.textBox5.Location = new System.Drawing.Point(68, 37);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(122, 20);
             this.textBox5.TabIndex = 0;
@@ -601,7 +600,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 42);
+            this.label12.Location = new System.Drawing.Point(13, 40);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(40, 13);
             this.label12.TabIndex = 12;
@@ -610,7 +609,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(236, 42);
+            this.label13.Location = new System.Drawing.Point(212, 44);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(50, 13);
             this.label13.TabIndex = 13;
@@ -618,7 +617,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(61, 76);
+            this.textBox6.Location = new System.Drawing.Point(68, 83);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(122, 20);
             this.textBox6.TabIndex = 14;
@@ -627,7 +626,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 77);
+            this.label14.Location = new System.Drawing.Point(13, 84);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(49, 13);
             this.label14.TabIndex = 15;
@@ -635,7 +634,7 @@
             // 
             // limpiarform2
             // 
-            this.limpiarform2.Location = new System.Drawing.Point(432, 77);
+            this.limpiarform2.Location = new System.Drawing.Point(443, 83);
             this.limpiarform2.Name = "limpiarform2";
             this.limpiarform2.Size = new System.Drawing.Size(91, 21);
             this.limpiarform2.TabIndex = 16;
@@ -646,25 +645,17 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(236, 6);
+            this.label15.Location = new System.Drawing.Point(212, 7);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(80, 13);
             this.label15.TabIndex = 13;
             this.label15.Text = "Hora  y Fecha :";
             // 
-            // Hora
-            // 
-            this.Hora.AutoSize = true;
-            this.Hora.Location = new System.Drawing.Point(332, 6);
-            this.Hora.Name = "Hora";
-            this.Hora.Size = new System.Drawing.Size(0, 13);
-            this.Hora.TabIndex = 17;
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(9, 6);
+            this.label16.Location = new System.Drawing.Point(3, 7);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(191, 13);
             this.label16.TabIndex = 18;
@@ -672,7 +663,7 @@
             // 
             // borrarform2
             // 
-            this.borrarform2.Location = new System.Drawing.Point(338, 77);
+            this.borrarform2.Location = new System.Drawing.Point(338, 83);
             this.borrarform2.Name = "borrarform2";
             this.borrarform2.Size = new System.Drawing.Size(91, 21);
             this.borrarform2.TabIndex = 19;
@@ -683,7 +674,7 @@
             // lblfactura
             // 
             this.lblfactura.AutoSize = true;
-            this.lblfactura.Location = new System.Drawing.Point(398, 9);
+            this.lblfactura.Location = new System.Drawing.Point(429, 6);
             this.lblfactura.Name = "lblfactura";
             this.lblfactura.Size = new System.Drawing.Size(43, 13);
             this.lblfactura.TabIndex = 20;
@@ -691,47 +682,56 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(447, 6);
+            this.textBox7.Location = new System.Drawing.Point(478, 3);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(76, 20);
+            this.textBox7.Size = new System.Drawing.Size(56, 20);
             this.textBox7.TabIndex = 21;
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.lblhora);
+            this.panel4.Controls.Add(this.label16);
             this.panel4.Controls.Add(this.textBox7);
+            this.panel4.Controls.Add(this.limpiarform2);
+            this.panel4.Controls.Add(this.textBox5);
+            this.panel4.Controls.Add(this.textBox6);
+            this.panel4.Controls.Add(this.label12);
             this.panel4.Controls.Add(this.lblfactura);
             this.panel4.Controls.Add(this.borrarform2);
-            this.panel4.Controls.Add(this.label16);
-            this.panel4.Controls.Add(this.Hora);
-            this.panel4.Controls.Add(this.label15);
-            this.panel4.Controls.Add(this.limpiarform2);
             this.panel4.Controls.Add(this.label14);
-            this.panel4.Controls.Add(this.textBox6);
-            this.panel4.Controls.Add(this.label13);
-            this.panel4.Controls.Add(this.label12);
-            this.panel4.Controls.Add(this.textBox5);
             this.panel4.Controls.Add(this.comboBox1);
+            this.panel4.Controls.Add(this.label15);
+            this.panel4.Controls.Add(this.label13);
             this.panel4.Controls.Add(this.button6);
-            this.panel4.Location = new System.Drawing.Point(5, 12);
+            this.panel4.Location = new System.Drawing.Point(5, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(539, 110);
-            this.panel4.TabIndex = 3;
+            this.panel4.Size = new System.Drawing.Size(539, 118);
+            this.panel4.TabIndex = 22;
+            // 
+            // lblhora
+            // 
+            this.lblhora.AutoSize = true;
+            this.lblhora.Location = new System.Drawing.Point(288, 7);
+            this.lblhora.Name = "lblhora";
+            this.lblhora.Size = new System.Drawing.Size(49, 13);
+            this.lblhora.TabIndex = 22;
+            this.lblhora.Text = "######";
             // 
             // Vproducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 557);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Vproducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Venta Rapida";
@@ -752,8 +752,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tabla)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
@@ -814,11 +814,11 @@
         private System.Windows.Forms.Label label14;
         public System.Windows.Forms.Button limpiarform2;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label Hora;
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.Button borrarform2;
         private System.Windows.Forms.Label lblfactura;
         public System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblhora;
     }
 }

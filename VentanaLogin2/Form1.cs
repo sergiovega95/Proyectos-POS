@@ -90,6 +90,13 @@ namespace VentanaLogin2
                 Application.Exit();
             }            
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form8 frm = new Form8();
+            frm.Show();
+
+        }
     }      
     
 }

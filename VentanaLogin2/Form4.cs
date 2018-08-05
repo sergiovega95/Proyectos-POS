@@ -7,20 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace VentanaLogin2
 {
    
     public partial class Vpagar : Form
     {
+       // private DataTable dt;
         string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
+        DataTable source = new DataTable();
+        public string Subtotal;
+        public string Impuesto;
+        public string Descuento;
+        public string Totalpago;
 
 
         public Vpagar()
         {
-            
-            InitializeComponent();
-                      
+             InitializeComponent();
+
+           
             double pagacon = 0.0;
             double total = 0.0;
             textBox3.Text = "0.0";
@@ -29,8 +36,16 @@ namespace VentanaLogin2
             total = (ventanaproducto.sumatotal)-(ventanaproducto.sumatotal*ventanaproducto.descuento);            
             pagacon = Convert.ToDouble(textBox3.Text);
 
-          
+                      
         }
+
+        public Vpagar(DataTable datasource_Padre)
+        {
+            InitializeComponent();
+            source = datasource_Padre;
+        }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -59,35 +74,56 @@ namespace VentanaLogin2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Vproducto Ventanaproducto = new Vproducto();
-            int numero_filas = Ventanaproducto.dataGridView_tabla.RowCount;
-            MessageBox.Show(Convert.ToString(numero_filas));
-
-            for (int i = 0; i < numero_filas; i++)
+            foreach (DataRow fila in source.Rows)
             {
-                string codigo_producto =(string)Ventanaproducto.dataGridView_tabla.Rows[i].Cells[0].Value;
-                string cantidad_productos_vendidos = (string)Ventanaproducto.dataGridView_tabla.Rows[i].Cells[3].Value;
+                string codigo_producto = fila["Codigo"].ToString();
+                string cantidad_productos_vendidos = fila["Cantidad"].ToString();
+                //MessageBox.Show(codigo_producto);
 
                 string peticion_stock_actual = "Select Stock from tabla_productos where Codigo=" + codigo_producto + "";
 
                 clase_lectura leer = new clase_lectura();
                 string stock_actual = leer.leer_un_dato(database, peticion_stock_actual);
 
-                int stock_nuevo = Convert.ToInt32(stock_actual)-Convert.ToInt32(cantidad_productos_vendidos);
+                int stock_nuevo = Convert.ToInt32(stock_actual) - Convert.ToInt32(cantidad_productos_vendidos);
 
-                string peticion_modificar_stock = "update tabla_productos set Stock = " + Convert.ToString(stock_nuevo)+" where Codigo= "+codigo_producto+" ";
+                string peticion_modificar_stock = "update tabla_productos set Stock = " + Convert.ToString(stock_nuevo) + " where Codigo= " + codigo_producto + " ";
                 clase_escritura consulta = new clase_escritura();
-                int resultado= consulta.escribir(database, peticion_modificar_stock);
+                int resultado = consulta.escribir(database, peticion_modificar_stock);
+                
             }
-            
-            //Vuelvo a la pantalla principal despues de pagar y cierro la de pago
-            Vproducto ventanaproducto = new Vproducto();
-            ventanaproducto.button6.Enabled = false;
-            ventanaproducto.borrarform2.Enabled = false;
-            ventanaproducto.limpiarform2.Enabled = false;
-            ventanaproducto.dataGridView_tabla.Enabled = false;
-            this.Close();
 
+
+            SqlConnection conexion = new SqlConnection(database);
+            conexion.Open();
+            string inserta_producto_vendidos = "insert into tabla_Ventas(id_factura,Codigo,Detalle,ValorUnitario,Cantidad,ValorTotal) values(@id_factura,@Codigo,@Detalle,@ValorUnitario,@Cantidad,@ValorTotal) ";
+            SqlCommand comando = new SqlCommand(inserta_producto_vendidos, conexion);
+
+            foreach (DataRow fila in source.Rows)
+            {
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@id_factura", "12");
+                comando.Parameters.AddWithValue("@Codigo", fila["Codigo"].ToString());
+                comando.Parameters.AddWithValue("@Detalle", fila["Detalle"].ToString());
+                comando.Parameters.AddWithValue("@ValorUnitario", fila["Valor Unitario"].ToString());
+                comando.Parameters.AddWithValue("@Cantidad", fila["Cantidad"].ToString());
+                comando.Parameters.AddWithValue("@ValorTotal", fila["Valor Total"].ToString());
+                comando.ExecuteNonQuery();
+            }
+            conexion.Close();
+
+            Vproducto venta_producto = new Vproducto();
+
+            string inserta_totales = "insert into tabla_facturas(id_factura,Subtotal,Impuesto,Descuento,Totalpago) values( 12 ," + Subtotal + "," + Impuesto + "," + Descuento + "," + Totalpago + ")";
+            clase_escritura consulta2 = new clase_escritura();
+            consulta2.escribir(database, inserta_totales);
+            this.Close();
+                       
+        }
+
+        private void Vpagar_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -67,30 +67,27 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView_tabla = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.borrarform2 = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.Hora = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.limpiarform2 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.nuevaventaform2 = new System.Windows.Forms.Button();
             this.pagarform2 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button_prueba = new System.Windows.Forms.Button();
+            this.dataGridView_tabla = new System.Windows.Forms.DataGridView();
+            this.button6 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.limpiarform2 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.Hora = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.borrarform2 = new System.Windows.Forms.Button();
+            this.lblfactura = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -104,9 +101,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_aguila)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tabla)).BeginInit();
             this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -516,61 +513,194 @@
             this.panel3.Size = new System.Drawing.Size(539, 232);
             this.panel3.TabIndex = 2;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(438, 14);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(95, 27);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Imprimir Factura";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // pagarform2
+            // 
+            this.pagarform2.Location = new System.Drawing.Point(98, 14);
+            this.pagarform2.Name = "pagarform2";
+            this.pagarform2.Size = new System.Drawing.Size(95, 27);
+            this.pagarform2.TabIndex = 8;
+            this.pagarform2.Text = "Pagar";
+            this.pagarform2.UseVisualStyleBackColor = true;
+            this.pagarform2.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.button_prueba);
+            this.panel5.Controls.Add(this.button3);
+            this.panel5.Controls.Add(this.pagarform2);
+            this.panel5.Location = new System.Drawing.Point(6, 499);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(538, 46);
+            this.panel5.TabIndex = 4;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // button_prueba
+            // 
+            this.button_prueba.Location = new System.Drawing.Point(8, 16);
+            this.button_prueba.Name = "button_prueba";
+            this.button_prueba.Size = new System.Drawing.Size(75, 23);
+            this.button_prueba.TabIndex = 9;
+            this.button_prueba.Text = "button2";
+            this.button_prueba.UseVisualStyleBackColor = true;
+            this.button_prueba.Click += new System.EventHandler(this.button_prueba_Click);
+            // 
             // dataGridView_tabla
             // 
             this.dataGridView_tabla.AllowUserToAddRows = false;
             this.dataGridView_tabla.AllowUserToDeleteRows = false;
-            this.dataGridView_tabla.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView_tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_tabla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo,
-            this.Detalle,
-            this.ValorUnitario,
-            this.Cantidad,
-            this.Valor_Total});
             this.dataGridView_tabla.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_tabla.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView_tabla.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_tabla.Name = "dataGridView_tabla";
             this.dataGridView_tabla.ReadOnly = true;
-            this.dataGridView_tabla.RowHeadersWidth = 40;
-            this.dataGridView_tabla.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_tabla.Size = new System.Drawing.Size(537, 230);
             this.dataGridView_tabla.TabIndex = 0;
             // 
-            // Codigo
+            // button6
             // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
+            this.button6.Location = new System.Drawing.Point(241, 77);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(91, 21);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "Agregar";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // Detalle
+            // comboBox1
             // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            this.Detalle.ReadOnly = true;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(292, 39);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(202, 21);
+            this.comboBox1.TabIndex = 10;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // ValorUnitario
+            // textBox5
             // 
-            this.ValorUnitario.HeaderText = "Valor Unitario";
-            this.ValorUnitario.Name = "ValorUnitario";
-            this.ValorUnitario.ReadOnly = true;
+            this.textBox5.Location = new System.Drawing.Point(61, 39);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(122, 20);
+            this.textBox5.TabIndex = 0;
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
-            // Cantidad
+            // label12
             // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 42);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(40, 13);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Codigo";
             // 
-            // Valor_Total
+            // label13
             // 
-            this.Valor_Total.HeaderText = "Valor Total";
-            this.Valor_Total.Name = "Valor_Total";
-            this.Valor_Total.ReadOnly = true;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(236, 42);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(50, 13);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "Producto";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(61, 76);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(122, 20);
+            this.textBox6.TabIndex = 14;
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 77);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(49, 13);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "Cantidad";
+            // 
+            // limpiarform2
+            // 
+            this.limpiarform2.Location = new System.Drawing.Point(432, 77);
+            this.limpiarform2.Name = "limpiarform2";
+            this.limpiarform2.Size = new System.Drawing.Size(91, 21);
+            this.limpiarform2.TabIndex = 16;
+            this.limpiarform2.Text = "Limpiar";
+            this.limpiarform2.UseVisualStyleBackColor = true;
+            this.limpiarform2.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(236, 6);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(80, 13);
+            this.label15.TabIndex = 13;
+            this.label15.Text = "Hora  y Fecha :";
+            // 
+            // Hora
+            // 
+            this.Hora.AutoSize = true;
+            this.Hora.Location = new System.Drawing.Point(332, 6);
+            this.Hora.Name = "Hora";
+            this.Hora.Size = new System.Drawing.Size(0, 13);
+            this.Hora.TabIndex = 17;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(9, 6);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(191, 13);
+            this.label16.TabIndex = 18;
+            this.label16.Text = "MICROMERCADO PORTO REAL";
+            // 
+            // borrarform2
+            // 
+            this.borrarform2.Location = new System.Drawing.Point(338, 77);
+            this.borrarform2.Name = "borrarform2";
+            this.borrarform2.Size = new System.Drawing.Size(91, 21);
+            this.borrarform2.TabIndex = 19;
+            this.borrarform2.Text = "Borrar";
+            this.borrarform2.UseVisualStyleBackColor = true;
+            this.borrarform2.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // lblfactura
+            // 
+            this.lblfactura.AutoSize = true;
+            this.lblfactura.Location = new System.Drawing.Point(398, 9);
+            this.lblfactura.Name = "lblfactura";
+            this.lblfactura.Size = new System.Drawing.Size(43, 13);
+            this.lblfactura.TabIndex = 20;
+            this.lblfactura.Text = "Factura";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(447, 6);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(76, 20);
+            this.textBox7.TabIndex = 21;
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.textBox7);
+            this.panel4.Controls.Add(this.lblfactura);
             this.panel4.Controls.Add(this.borrarform2);
             this.panel4.Controls.Add(this.label16);
             this.panel4.Controls.Add(this.Hora);
@@ -587,161 +717,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(539, 110);
             this.panel4.TabIndex = 3;
-            // 
-            // borrarform2
-            // 
-            this.borrarform2.Location = new System.Drawing.Point(338, 77);
-            this.borrarform2.Name = "borrarform2";
-            this.borrarform2.Size = new System.Drawing.Size(91, 21);
-            this.borrarform2.TabIndex = 19;
-            this.borrarform2.Text = "Borrar";
-            this.borrarform2.UseVisualStyleBackColor = true;
-            this.borrarform2.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(9, 6);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(191, 13);
-            this.label16.TabIndex = 18;
-            this.label16.Text = "MICROMERCADO PORTO REAL";
-            // 
-            // Hora
-            // 
-            this.Hora.AutoSize = true;
-            this.Hora.Location = new System.Drawing.Point(332, 6);
-            this.Hora.Name = "Hora";
-            this.Hora.Size = new System.Drawing.Size(0, 13);
-            this.Hora.TabIndex = 17;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(236, 6);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(80, 13);
-            this.label15.TabIndex = 13;
-            this.label15.Text = "Hora  y Fecha :";
-            // 
-            // limpiarform2
-            // 
-            this.limpiarform2.Location = new System.Drawing.Point(432, 77);
-            this.limpiarform2.Name = "limpiarform2";
-            this.limpiarform2.Size = new System.Drawing.Size(91, 21);
-            this.limpiarform2.TabIndex = 16;
-            this.limpiarform2.Text = "Limpiar";
-            this.limpiarform2.UseVisualStyleBackColor = true;
-            this.limpiarform2.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 77);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(49, 13);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "Cantidad";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(61, 76);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(122, 20);
-            this.textBox6.TabIndex = 14;
-            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(236, 42);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 13);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "Producto";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 42);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(40, 13);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "Codigo";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(61, 39);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(122, 20);
-            this.textBox5.TabIndex = 0;
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(292, 39);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(202, 21);
-            this.comboBox1.TabIndex = 10;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(241, 77);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(91, 21);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "Agregar";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(438, 14);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 27);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Imprimir Factura";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // nuevaventaform2
-            // 
-            this.nuevaventaform2.Location = new System.Drawing.Point(3, 14);
-            this.nuevaventaform2.Name = "nuevaventaform2";
-            this.nuevaventaform2.Size = new System.Drawing.Size(95, 27);
-            this.nuevaventaform2.TabIndex = 7;
-            this.nuevaventaform2.Text = "Nueva Venta";
-            this.nuevaventaform2.UseVisualStyleBackColor = true;
-            this.nuevaventaform2.Click += new System.EventHandler(this.nuevaventaform2_Click);
-            // 
-            // pagarform2
-            // 
-            this.pagarform2.Location = new System.Drawing.Point(104, 14);
-            this.pagarform2.Name = "pagarform2";
-            this.pagarform2.Size = new System.Drawing.Size(95, 27);
-            this.pagarform2.TabIndex = 8;
-            this.pagarform2.Text = "Pagar";
-            this.pagarform2.UseVisualStyleBackColor = true;
-            this.pagarform2.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.nuevaventaform2);
-            this.panel5.Controls.Add(this.button3);
-            this.panel5.Controls.Add(this.pagarform2);
-            this.panel5.Location = new System.Drawing.Point(6, 499);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(538, 46);
-            this.panel5.TabIndex = 4;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Vproducto
             // 
@@ -777,10 +752,10 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tabla)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -812,41 +787,38 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button pagarform2;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label Hora;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button9;
-        public System.Windows.Forms.Button button6;
-        public System.Windows.Forms.Button limpiarform2;
-        public System.Windows.Forms.Button borrarform2;
         public System.Windows.Forms.TextBox textBox4;
-        public System.Windows.Forms.Button nuevaventaform2;
-        public System.Windows.Forms.TextBox textBox6;
-        public System.Windows.Forms.TextBox textBox5;
-        public System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button_prueba;
         public System.Windows.Forms.DataGridView dataGridView_tabla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ValorUnitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor_Total;
+        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.Button button6;
+        public System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        public System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label14;
+        public System.Windows.Forms.Button limpiarform2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label Hora;
+        private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.Button borrarform2;
+        private System.Windows.Forms.Label lblfactura;
+        public System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Panel panel4;
     }
 }

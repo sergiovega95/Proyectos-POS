@@ -42,6 +42,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 246);
+            this.label2.Location = new System.Drawing.Point(23, 229);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 2;
@@ -76,7 +77,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 277);
+            this.label3.Location = new System.Drawing.Point(23, 255);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 3;
@@ -118,7 +119,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(108, 243);
+            this.textBox3.Location = new System.Drawing.Point(108, 226);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 8;
@@ -126,7 +127,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(108, 274);
+            this.textBox4.Location = new System.Drawing.Point(108, 252);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(100, 20);
@@ -161,11 +162,19 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Resumen";
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(108, 278);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.TabIndex = 13;
+            // 
             // Vpagar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(226, 357);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -185,6 +194,8 @@
             this.Name = "Vpagar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Resumen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Vpagar_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Vpagar_FormClosed);
             this.Load += new System.EventHandler(this.Vpagar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -207,5 +218,6 @@
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

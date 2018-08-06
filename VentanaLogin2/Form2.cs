@@ -16,12 +16,12 @@ namespace VentanaLogin2
     {
         //Definición de las variables globales que deseo que conozcan todo el form
 
-        private DataTable dt;
+        public DataTable dt;
         string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
-        double valortotal;
         double impuesto = 0.19;
         public double descuento = 0.0;
-        public double sumatotal = 0.0;
+        public string actual_id_factura;
+        // public double sumatotal = 0.0;
 
 
         public Vproducto()
@@ -30,15 +30,15 @@ namespace VentanaLogin2
             //Inicializacion del Timer que me permite mostrar la hora y fecha
             timer1.Enabled = true;
             textBox3.Text = "0";
-            //Int32 numero_filas = dataGridView_tabla.Rows.Count;
-
-
+           
         }
+
+             
 
         private void button6_Click(object sender, EventArgs e)
         {
             
-            descuento = (Convert.ToDouble(textBox3.Text)) / 100;
+            double descuento = (Convert.ToDouble(textBox3.Text)) / 100;
 
 
             //Verificación si los espacios de codigo, cantidad y nombre de productos estaban vacios
@@ -81,7 +81,7 @@ namespace VentanaLogin2
                 dataGridView_tabla.Rows[numero_fila].Cells[3].Value = Convert.ToString(Convert.ToInt32((string)dataGridView_tabla.Rows[numero_fila].Cells[3].Value) + Convert.ToInt32(textBox6.Text));
                 double aux3 = Convert.ToDouble(dataGridView_tabla.Rows[numero_fila].Cells[3].Value);
                 double aux4 = Convert.ToDouble(precio_producto);
-                valortotal = aux3 * aux4;
+                double valortotal = aux3 * aux4;
                 dataGridView_tabla.Rows[numero_fila].Cells[4].Value = Convert.ToString(valortotal);
 
 
@@ -109,7 +109,7 @@ namespace VentanaLogin2
                 double aux2, aux3;
                 aux2 = Convert.ToDouble(textBox6.Text);
                 aux3 = Convert.ToDouble(precio_producto);
-                valortotal = aux2 * aux3;
+                double valortotal = aux2 * aux3;
 
                 DataRow row = dt.NewRow();
                 row["Codigo"] = textBox5.Text;
@@ -279,7 +279,7 @@ namespace VentanaLogin2
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //descuento = (Convert.ToDouble(textBox3.Text)) / 100;
+            //double descuento = (Convert.ToDouble(textBox3.Text)) / 100;
 
             try {
 
@@ -380,7 +380,7 @@ namespace VentanaLogin2
         {
             //Aplico el descuento ingresado
 
-            descuento = (Convert.ToDouble(textBox3.Text)) / 100;
+           // double descuento = (Convert.ToDouble(textBox3.Text)) / 100;
 
 
             //Clase que me entrega el total a pagar , la tengo que llamar para que 
@@ -410,10 +410,12 @@ namespace VentanaLogin2
             ventanapagar.textBox1.Text = textBox4.Text;
             ventanapagar.textBox2.Text = Convert.ToString(total_productos_comprados);
 
+            //ademas tambien le comparto el Subtotal,Impuesto,Descuento,Totalpago
             ventanapagar.Subtotal=  textBox1.Text;
             ventanapagar.Impuesto = textBox2.Text;
             ventanapagar.Descuento = textBox3.Text;
             ventanapagar.Totalpago = textBox4.Text;
+            ventanapagar.actual_id_factura = actual_id_factura;
             ventanapagar.ShowDialog();
                        
         }
@@ -430,6 +432,7 @@ namespace VentanaLogin2
         
         private void Vproducto_Load(object sender, EventArgs e)
         {
+            
             //Todo lo de este evento  se ejecuta apenas el formulario se carga
 
              textBox5.Focus();
@@ -463,7 +466,14 @@ namespace VentanaLogin2
             dt.Columns.Add("Valor Total");
             dataGridView_tabla.DataSource = dt;
 
-
+            string peticion_idfactura = " SELECT TOP 1 id_factura FROM tabla_facturas ORDER BY id_factura DESC ";
+            clase_lectura leer = new clase_lectura();
+            string ultimo_id_factura = leer.leer_un_dato(database, peticion_idfactura);
+            int aux = Convert.ToInt32(ultimo_id_factura)+1;
+            actual_id_factura = Convert.ToString(aux);
+                      
+            textBox7.Text = "#FAC-00" + actual_id_factura;
+                        
             //Borro la ultima factura
 
             string borrar_ultima_factura = "delete from tabla_factura";

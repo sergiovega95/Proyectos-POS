@@ -21,22 +21,14 @@ namespace VentanaLogin2
         public string Impuesto;
         public string Descuento;
         public string Totalpago;
+        public string actual_id_factura;
 
 
         public Vpagar()
         {
-             InitializeComponent();
-
-           
-            double pagacon = 0.0;
-            double total = 0.0;
+            InitializeComponent();                
             textBox3.Text = "0.0";
             textBox4.Text = "0.0";
-            Vproducto ventanaproducto = new Vproducto();
-            total = (ventanaproducto.sumatotal)-(ventanaproducto.sumatotal*ventanaproducto.descuento);            
-            pagacon = Convert.ToDouble(textBox3.Text);
-
-                      
         }
 
         public Vpagar(DataTable datasource_Padre)
@@ -98,11 +90,13 @@ namespace VentanaLogin2
             conexion.Open();
             string inserta_producto_vendidos = "insert into tabla_Ventas(id_factura,Codigo,Detalle,ValorUnitario,Cantidad,ValorTotal) values(@id_factura,@Codigo,@Detalle,@ValorUnitario,@Cantidad,@ValorTotal) ";
             SqlCommand comando = new SqlCommand(inserta_producto_vendidos, conexion);
-
+            Vproducto v = new Vproducto();
+            
+            
             foreach (DataRow fila in source.Rows)
             {
                 comando.Parameters.Clear();
-                comando.Parameters.AddWithValue("@id_factura", "12");
+                comando.Parameters.AddWithValue("@id_factura", actual_id_factura);
                 comando.Parameters.AddWithValue("@Codigo", fila["Codigo"].ToString());
                 comando.Parameters.AddWithValue("@Detalle", fila["Detalle"].ToString());
                 comando.Parameters.AddWithValue("@ValorUnitario", fila["Valor Unitario"].ToString());
@@ -112,17 +106,32 @@ namespace VentanaLogin2
             }
             conexion.Close();
 
-            Vproducto venta_producto = new Vproducto();
+            //Vproducto venta_producto = new Vproducto();
 
-            string inserta_totales = "insert into tabla_facturas(id_factura,Subtotal,Impuesto,Descuento,Totalpago) values( 12 ," + Subtotal + "," + Impuesto + "," + Descuento + "," + Totalpago + ")";
+            string inserta_totales = "insert into tabla_facturas(id_factura,Subtotal,Impuesto,Descuento,Totalpago) values( "+ actual_id_factura + " ," + Subtotal + "," + Impuesto + "," + Descuento + "," + Totalpago + ")";
             clase_escritura consulta2 = new clase_escritura();
             consulta2.escribir(database, inserta_totales);
+
+            int nuevo_id = Convert.ToInt32(actual_id_factura) + 1;
+
             this.Close();
-                       
+            
         }
 
         private void Vpagar_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        private void Vpagar_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           
+
+
+        }
+
+        private void Vpagar_FormClosing(object sender, FormClosingEventArgs e)
+        {            
             
         }
     }

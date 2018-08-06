@@ -674,7 +674,7 @@
             // lblfactura
             // 
             this.lblfactura.AutoSize = true;
-            this.lblfactura.Location = new System.Drawing.Point(429, 6);
+            this.lblfactura.Location = new System.Drawing.Point(410, 6);
             this.lblfactura.Name = "lblfactura";
             this.lblfactura.Size = new System.Drawing.Size(43, 13);
             this.lblfactura.TabIndex = 20;
@@ -682,9 +682,10 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(478, 3);
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(459, 3);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(56, 20);
+            this.textBox7.Size = new System.Drawing.Size(75, 20);
             this.textBox7.TabIndex = 21;
             // 
             // panel4

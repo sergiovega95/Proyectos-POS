@@ -157,8 +157,13 @@ namespace VentanaLogin2
 
         private void Vpagar_Load(object sender, EventArgs e)
         {
-            
-        }
+            string peticion_id_ultima_factura="select max (id_factura) from tabla_facturas";
+            clase_lectura leer = new clase_lectura();
+            string ultimo_id=leer.leer_un_dato(database,peticion_id_ultima_factura);
+            string id_actual=Convert.ToString((Convert.ToInt64(ultimo_id)+1));
+            textBox5.Text = id_actual;
+            textBox5.Enabled = false;                    
+          }
 
         private void Vpagar_FormClosed(object sender, FormClosedEventArgs e)
         {

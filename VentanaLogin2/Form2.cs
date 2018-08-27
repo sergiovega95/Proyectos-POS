@@ -401,7 +401,7 @@ namespace VentanaLogin2
         {
             if (textBox4.Text == "0"){
 
-                MessageBox.Show("Agrege productos al carrito");
+                MessageBox.Show("Agrege productos al carrito","Informaciòn",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
             }
 
@@ -488,7 +488,14 @@ namespace VentanaLogin2
             string borrar_ultima_factura = "delete from tabla_factura";
             clase_escritura consulta = new clase_escritura();
             consulta.escribir(database, borrar_ultima_factura);
-                        
+
+            string peticion_id_ultima_factura = "select max (id_factura) from tabla_facturas";
+            clase_lectura leer = new clase_lectura();
+            string ultimo_id = leer.leer_un_dato(database, peticion_id_ultima_factura);
+            string id_actual = Convert.ToString((Convert.ToInt64(ultimo_id) + 1));
+            textBox7.Text = "FAC-0"+id_actual;
+            textBox7.Enabled = false;
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

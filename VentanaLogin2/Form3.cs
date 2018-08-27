@@ -70,6 +70,8 @@ namespace VentanaLogin2
 
         private void Vnuevoproducto_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'dbPOSDataSet3.tabla_productos' Puede moverla o quitarla según sea necesario.
+            this.tabla_productosTableAdapter1.Fill(this.dbPOSDataSet3.tabla_productos);
             //Consulto Cargo y Genero el Codigo para un producto nuevo leyendo el ultimo de la base
             //string database = "server=DESKTOP-N49DV7A\\SQLEXPRESS;database=dbPOS;integrated security = true";
             SqlConnection conexion = new SqlConnection(database);
@@ -81,7 +83,7 @@ namespace VentanaLogin2
             textBox1.Text = Convert.ToString(nuevo_codigo);
                         
             //Esta línea de código carga datos en la tabla 'dbPOSDataSet.tabla_productos' Puede moverla o quitarla según sea necesario.
-            this.tabla_productosTableAdapter.Fill(this.dbPOSDataSet.tabla_productos);
+            //this.tabla_productosTableAdapter.Fill(this.dbPOSDataSet.tabla_productos);
 
         }
 

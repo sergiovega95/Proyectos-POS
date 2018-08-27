@@ -71,7 +71,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.pagarform2 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button_prueba = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -88,6 +87,7 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblhora = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -537,7 +537,7 @@
             // 
             // pagarform2
             // 
-            this.pagarform2.Location = new System.Drawing.Point(98, 14);
+            this.pagarform2.Location = new System.Drawing.Point(11, 14);
             this.pagarform2.Name = "pagarform2";
             this.pagarform2.Size = new System.Drawing.Size(95, 27);
             this.pagarform2.TabIndex = 8;
@@ -548,22 +548,13 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.button_prueba);
+            this.panel5.Controls.Add(this.button2);
             this.panel5.Controls.Add(this.button3);
             this.panel5.Controls.Add(this.pagarform2);
             this.panel5.Location = new System.Drawing.Point(6, 499);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(538, 46);
             this.panel5.TabIndex = 4;
-            // 
-            // button_prueba
-            // 
-            this.button_prueba.Location = new System.Drawing.Point(8, 16);
-            this.button_prueba.Name = "button_prueba";
-            this.button_prueba.Size = new System.Drawing.Size(75, 23);
-            this.button_prueba.TabIndex = 9;
-            this.button_prueba.Text = "button2";
-            this.button_prueba.UseVisualStyleBackColor = true;
             // 
             // timer1
             // 
@@ -719,6 +710,16 @@
             this.lblhora.TabIndex = 22;
             this.lblhora.Text = "######";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(316, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(95, 27);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Lista de facturas";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Vproducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -801,7 +802,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button9;
         public System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button_prueba;
         public System.Windows.Forms.DataGridView dataGridView_tabla;
         public System.Windows.Forms.TextBox textBox3;
         public System.Windows.Forms.TextBox textBox2;
@@ -821,5 +821,6 @@
         public System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblhora;
+        private System.Windows.Forms.Button button2;
     }
 }

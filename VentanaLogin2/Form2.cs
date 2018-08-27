@@ -387,6 +387,7 @@ namespace VentanaLogin2
             //recalcule el total despues de haber aplicado el descuento 
 
             Totalizar resultado = new Totalizar(dt);
+            double descuento = (Convert.ToDouble(textBox3.Text))/100;
             textBox1.Text = resultado.subtotal(impuesto);
             textBox2.Text = resultado.impuesto(impuesto);
             textBox4.Text = resultado.sumatotal(descuento);
@@ -502,14 +503,7 @@ namespace VentanaLogin2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //Verifico si tengo campos vacios en el datagridview
-            if (dataGridView_tabla.Rows.Count == 0)
-            {
-                MessageBox.Show("No existen campos para imprimir una factura");
-
-            }
-            else
-
+            try
             {
                 SqlConnection conexion = new SqlConnection(database);
                 conexion.Open();
@@ -528,19 +522,31 @@ namespace VentanaLogin2
                 }
                 conexion.Close();
 
+                string inserta_totales = "insert into tabla_totales(Subtotal,Impuesto,Descuento,Totalpago) values(" + textBox1.Text + "," + textBox2.Text + "," + textBox3.Text + "," + textBox4.Text + ") ";
+                clase_escritura consulta = new clase_escritura();
+                consulta.escribir(database, inserta_totales);
+
+                Vreporte ventanareporte = new Vreporte();
+                ventanareporte.Show();
+
             }
 
-            string inserta_totales = "insert into tabla_totales(Subtotal,Impuesto,Descuento,Totalpago) values(" + textBox1.Text + "," + textBox2.Text + "," + textBox3.Text + "," + textBox4.Text + ") ";
-            clase_escritura consulta = new clase_escritura();
-            consulta.escribir(database, inserta_totales);
+            catch
+            {
+                //Alerta cuando se quiere generar una factura con campos vacios
+                MessageBox.Show("No existen campos para imprimir una factura","Cesta de compras vacia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
 
-            Vreporte ventanareporte = new Vreporte();
-            ventanareporte.Show();
-
-
+            }
+           
+            
         }
 
-        
-    
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Vlista_facturas ventana = new Vlista_facturas();
+            ventana.Show();
+
+        }
     }
 }

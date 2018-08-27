@@ -47,15 +47,22 @@ namespace VentanaLogin2
                 
                 clase_lectura leer = new clase_lectura();
                 SqlDataReader registros = leer.leer_varios_datos(database, peticion_lectura_usuario);
-                 
+
+                //la contraseña ingresada la paso por la funcion hash de sha 1
+                string hash_clave_introducida = hash.EncodePassword(Clave);
+
+
                while (registros.Read())
                {
+                  
                   string usuario_registrado = registros["Usuario"].ToString();
-                  string clave_registrada = registros["Contraseña"].ToString();
+                  string hash_clave_registrada = registros["Contraseña"].ToString();
+                             
 
-                    //Verificaciòn de el usuario y contraseña ingresado con la base de datos
+                
+                    //Verificaciòn de el usuario y la contraseña con su hash para mas seguridad
 
-                  if (usuario_registrado == Usuario & clave_registrada == Clave)
+                  if (usuario_registrado == Usuario & hash_clave_introducida == hash_clave_registrada)
                   {
                         MessageBox.Show("Inicio de sesiòn correctamente", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textboxUser.Clear();
@@ -64,6 +71,14 @@ namespace VentanaLogin2
                         Vproducto Ventas_ventana = new Vproducto();
                          Ventas_ventana.Show();
                   }
+
+                    else
+                    {
+                      MessageBox.Show("Usuario o contraseña incorectos", "Error inicio de sesiòn", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        textboxUser.Text = "";
+                        textboxClave.Text = "";
+
+                    }
                
                 }
 

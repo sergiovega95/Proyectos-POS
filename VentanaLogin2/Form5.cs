@@ -39,15 +39,20 @@ namespace VentanaLogin2
                 return;
             }
 
+            // Genero un Hash usando sha1 de la contraseña , en la base de datos guardo el hash y no la contraseña.
+
+            string hash_contraseña = hash.EncodePassword(contraseña);                    
+
+
             //Conexion y peticiòn de escritura a la base de datos , con los datos de un nuevo usuario
-            string peticion_escritura_usuario = "insert into tabla_usuarios (Usuario,Contraseña,Seguridad,Nombre,Apellido) values('" + usuario + "','" + contraseña + "','" + seguridad + "','" + nombre + "','" + apellido + "') ";
+            string peticion_escritura_usuario = "insert into tabla_usuarios (Usuario,Contraseña,Seguridad,Nombre,Apellido) values('" + usuario + "','" + hash_contraseña + "','" + seguridad + "','" + nombre + "','" + apellido + "') ";
             clase_escritura consulta = new clase_escritura();
             int resultado = consulta.escribir(database, peticion_escritura_usuario);
 
             if (resultado>0)
             {
                 //Mensaje para mostrar al usuario Limpio para agregar un nuevo usuario
-                MessageBox.Show("Se agrego Correctamente el nuevo usuario");
+                MessageBox.Show("Se agrego correctamente el nuevo usuario", "Registro Completo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();

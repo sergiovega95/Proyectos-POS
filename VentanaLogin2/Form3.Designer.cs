@@ -30,7 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Vnuevoproducto));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tablaproductosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbPOSDataSet = new VentanaLogin2.dbPOSDataSet();
             this.label5 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -47,37 +48,33 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tabla_productosTableAdapter = new VentanaLogin2.dbPOSDataSetTableAdapters.tabla_productosTableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dbPOSDataSet3 = new VentanaLogin2.dbPOSDataSet3();
+            this.tablaproductosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tabla_productosTableAdapter1 = new VentanaLogin2.dbPOSDataSet3TableAdapters.tabla_productosTableAdapter();
             this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tablaproductosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dbPOSDataSet = new VentanaLogin2.dbPOSDataSet();
-            this.tabla_productosTableAdapter = new VentanaLogin2.dbPOSDataSetTableAdapters.tabla_productosTableAdapter();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // tablaproductosBindingSource
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codigoDataGridViewTextBoxColumn,
-            this.nombreDataGridViewTextBoxColumn,
-            this.precioDataGridViewTextBoxColumn,
-            this.Stock});
-            this.dataGridView1.DataSource = this.tablaproductosBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 36);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(333, 177);
-            this.dataGridView1.TabIndex = 14;
+            this.tablaproductosBindingSource.DataMember = "tabla_productos";
+            this.tablaproductosBindingSource.DataSource = this.dbPOSDataSet;
+            // 
+            // dbPOSDataSet
+            // 
+            this.dbPOSDataSet.DataSetName = "dbPOSDataSet";
+            this.dbPOSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label5
             // 
@@ -233,15 +230,51 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Controls.Add(this.textBox4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Location = new System.Drawing.Point(12, 241);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(341, 270);
             this.panel2.TabIndex = 40;
+            // 
+            // tabla_productosTableAdapter
+            // 
+            this.tabla_productosTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigoDataGridViewTextBoxColumn,
+            this.nombreDataGridViewTextBoxColumn,
+            this.precioDataGridViewTextBoxColumn,
+            this.stockDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.tablaproductosBindingSource1;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 36);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(333, 180);
+            this.dataGridView1.TabIndex = 21;
+            // 
+            // dbPOSDataSet3
+            // 
+            this.dbPOSDataSet3.DataSetName = "dbPOSDataSet3";
+            this.dbPOSDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tablaproductosBindingSource1
+            // 
+            this.tablaproductosBindingSource1.DataMember = "tabla_productos";
+            this.tablaproductosBindingSource1.DataSource = this.dbPOSDataSet3;
+            // 
+            // tabla_productosTableAdapter1
+            // 
+            this.tabla_productosTableAdapter1.ClearBeforeFill = true;
             // 
             // codigoDataGridViewTextBoxColumn
             // 
@@ -264,26 +297,12 @@
             this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
             this.precioDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // tablaproductosBindingSource
+            // stockDataGridViewTextBoxColumn
             // 
-            this.tablaproductosBindingSource.DataMember = "tabla_productos";
-            this.tablaproductosBindingSource.DataSource = this.dbPOSDataSet;
-            // 
-            // dbPOSDataSet
-            // 
-            this.dbPOSDataSet.DataSetName = "dbPOSDataSet";
-            this.dbPOSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tabla_productosTableAdapter
-            // 
-            this.tabla_productosTableAdapter.ClearBeforeFill = true;
-            // 
-            // Stock
-            // 
-            this.Stock.DataPropertyName = "Stock";
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
+            this.stockDataGridViewTextBoxColumn.DataPropertyName = "Stock";
+            this.stockDataGridViewTextBoxColumn.HeaderText = "Stock";
+            this.stockDataGridViewTextBoxColumn.Name = "stockDataGridViewTextBoxColumn";
+            this.stockDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Vnuevoproducto
             // 
@@ -301,13 +320,15 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Producto";
             this.Load += new System.EventHandler(this.Vnuevoproducto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbPOSDataSet3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaproductosBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,9 +338,6 @@
         private dbPOSDataSet dbPOSDataSet;
         private System.Windows.Forms.BindingSource tablaproductosBindingSource;
         private dbPOSDataSetTableAdapters.tabla_productosTableAdapter tabla_productosTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
@@ -336,7 +354,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private dbPOSDataSet3 dbPOSDataSet3;
+        private System.Windows.Forms.BindingSource tablaproductosBindingSource1;
+        private dbPOSDataSet3TableAdapters.tabla_productosTableAdapter tabla_productosTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
     }
 }

@@ -53,6 +53,7 @@ namespace VentanaLogin2
             {
                 //Mensaje para mostrar al usuario Limpio para agregar un nuevo usuario
                 MessageBox.Show("Se agrego correctamente el nuevo usuario", "Registro Completo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();

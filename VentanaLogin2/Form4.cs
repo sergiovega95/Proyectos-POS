@@ -106,14 +106,10 @@ namespace VentanaLogin2
             }
             conexion.Close();
 
-            //Vproducto venta_producto = new Vproducto();
-
+           
             string inserta_totales = "insert into tabla_facturas(id_factura,Subtotal,Impuesto,Descuento,Totalpago) values( " + actual_id_factura + " ," + Subtotal + "," + Impuesto + "," + Descuento + "," + Totalpago + ")";
             clase_escritura consulta2 = new clase_escritura();
             consulta2.escribir(database, inserta_totales);
-
-            //int nuevo_id = Convert.ToInt32(actual_id_factura) + 1;
-
 
             DialogResult eleccion = MessageBox.Show("Desea Imprimir una factura", "Factura", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
@@ -127,7 +123,6 @@ namespace VentanaLogin2
                 foreach (DataRow fila in source.Rows)
                 {
                     comando3.Parameters.Clear();
-                    comando3.Parameters.AddWithValue("@id_factura", actual_id_factura);
                     comando3.Parameters.AddWithValue("@Codigo", fila["Codigo"].ToString());
                     comando3.Parameters.AddWithValue("@Detalle", fila["Detalle"].ToString());
                     comando3.Parameters.AddWithValue("@ValorUnitario", fila["Valor Unitario"].ToString());
@@ -138,11 +133,11 @@ namespace VentanaLogin2
                 conexion.Close();
 
                 string inserta_totales2 = "insert into tabla_totales(Subtotal,Impuesto,Descuento,Totalpago) values(" + Subtotal + "," + Impuesto + "," + Descuento + "," + Totalpago + ") ";
-                    clase_escritura consulta = new clase_escritura();
-                    consulta.escribir(database, inserta_totales2);
+                clase_escritura consulta = new clase_escritura();
+                consulta.escribir(database, inserta_totales2);
 
-                    Vreporte ventanareporte = new Vreporte();
-                    ventanareporte.Show();
+                Vreporte ventanareporte = new Vreporte();
+                ventanareporte.Show();
                     this.Close();
 
             }                        

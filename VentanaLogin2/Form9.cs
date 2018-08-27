@@ -68,5 +68,25 @@ namespace VentanaLogin2
                           
 
         }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Este evento me proporciona filtrar en tiempo real las facturas
+            //que estan en la base de datos
+
+            string filtro = textBox1.Text;
+            SqlConnection conexion = new SqlConnection(database);
+            conexion.Open();
+            string peticion_lectura_filtro = "select id_factura,Subtotal,Impuesto,Descuento,Totalpago from tabla_facturas where id_factura like '"+ filtro +"%'";
+            SqlCommand comando = new SqlCommand(peticion_lectura_filtro, conexion);
+            comando.ExecuteNonQuery();
+
+            //Lleno los datos de el datagridview con los resultados retornados del filtro
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            da.Fill(dt);
+            dataGridView_facturas.DataSource = dt;
+            conexion.Close();
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace VentanaLogin2
             //Inicializacion del Timer que me permite mostrar la hora y fecha
             timer1.Enabled = true;
             textBox3.Text = "0";
+            
            
         }
 
@@ -398,6 +399,15 @@ namespace VentanaLogin2
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if (textBox4.Text == "0"){
+
+                MessageBox.Show("Agrege productos al carrito");
+
+            }
+
+            else { 
+
+
             //llamo la misma clase Totalizar pero esta vez con el metodo que me devuelve la 
             // cantidad de productos comprados
 
@@ -416,9 +426,10 @@ namespace VentanaLogin2
             ventanapagar.Impuesto = textBox2.Text;
             ventanapagar.Descuento = textBox3.Text;
             ventanapagar.Totalpago = textBox4.Text;
-            ventanapagar.actual_id_factura = actual_id_factura;
+            //ventanapagar.actual_id_factura = actual_id_factura;
             ventanapagar.ShowDialog();
-                       
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -433,7 +444,11 @@ namespace VentanaLogin2
         
         private void Vproducto_Load(object sender, EventArgs e)
         {
-            
+            textBox1.Text = "0";
+            textBox2.Text = "0";
+            textBox3.Text = "0";
+            textBox4.Text = "0";
+
             //Todo lo de este evento  se ejecuta apenas el formulario se carga
 
              textBox5.Focus();
@@ -467,14 +482,7 @@ namespace VentanaLogin2
             dt.Columns.Add("Valor Total");
             dataGridView_tabla.DataSource = dt;
 
-            string peticion_idfactura = " SELECT TOP 1 id_factura FROM tabla_facturas ORDER BY id_factura DESC ";
-            clase_lectura leer = new clase_lectura();
-            string ultimo_id_factura = leer.leer_un_dato(database, peticion_idfactura);
-            int aux = Convert.ToInt32(ultimo_id_factura)+1;
-            actual_id_factura = Convert.ToString(aux);
-                      
-            textBox7.Text = "#FAC-00" + actual_id_factura;
-                        
+                                  
             //Borro la ultima factura
 
             string borrar_ultima_factura = "delete from tabla_factura";
@@ -497,8 +505,8 @@ namespace VentanaLogin2
 
         private void Vproducto_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Vlogin ventanainicio = new Vlogin();
-            ventanainicio.Show();
+            //Vlogin ventanainicio = new Vlogin();
+            //ventanainicio.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -71,6 +71,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.pagarform2 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -87,7 +88,6 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblhora = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -527,19 +527,22 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(438, 14);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(438, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 27);
+            this.button3.Size = new System.Drawing.Size(95, 38);
             this.button3.TabIndex = 6;
-            this.button3.Text = "Imprimir Factura";
+            this.button3.Text = "Imprimir ";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pagarform2
             // 
-            this.pagarform2.Location = new System.Drawing.Point(11, 14);
+            this.pagarform2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pagarform2.Location = new System.Drawing.Point(11, 3);
             this.pagarform2.Name = "pagarform2";
-            this.pagarform2.Size = new System.Drawing.Size(95, 27);
+            this.pagarform2.Size = new System.Drawing.Size(250, 38);
             this.pagarform2.TabIndex = 8;
             this.pagarform2.Text = "Pagar";
             this.pagarform2.UseVisualStyleBackColor = true;
@@ -555,6 +558,17 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(538, 46);
             this.panel5.TabIndex = 4;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(284, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(144, 38);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Lista de facturas";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // timer1
             // 
@@ -709,16 +723,6 @@
             this.lblhora.Size = new System.Drawing.Size(49, 13);
             this.lblhora.TabIndex = 22;
             this.lblhora.Text = "######";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(316, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 27);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Lista de facturas";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Vproducto
             // 

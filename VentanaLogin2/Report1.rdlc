@@ -637,10 +637,6 @@
                       <Value> FAC-00</Value>
                       <Style />
                     </TextRun>
-                    <TextRun>
-                      <Value>=Last(Fields!Codigo.Value, "DataSet3")</Value>
-                      <Style />
-                    </TextRun>
                   </TextRuns>
                   <Style>
                     <TextAlign>Center</TextAlign>
@@ -963,42 +959,6 @@
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
         <rd:TableAdapterName>tabla_totalesTableAdapter</rd:TableAdapterName>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="DataSet3">
-      <Query>
-        <DataSourceName>dbPOSDataSet1</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="Codigo">
-          <DataField>Codigo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Detalle">
-          <DataField>Detalle</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ValorUnitario">
-          <DataField>ValorUnitario</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Cantidad">
-          <DataField>Cantidad</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ValorTotal">
-          <DataField>ValorTotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>dbPOSDataSet1</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Sergio\Desktop\Proyecto\VentanaLogin2\dbPOSDataSet1.xsd</rd:SchemaPath>
-        <rd:TableName>tabla_factura</rd:TableName>
-        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
-        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>tabla_facturaTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

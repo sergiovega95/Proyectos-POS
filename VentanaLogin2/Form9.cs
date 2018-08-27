@@ -36,9 +36,9 @@ namespace VentanaLogin2
 
 
             int fila_seleccionada = dataGridView_facturas.SelectedRows[0].Index;
-            //string id_factura_seleccionada = (string)dataGridView_facturas.Rows[fila_seleccionada].Cells[0].Value;
+            string id_factura_seleccionada = dataGridView_facturas.Rows[fila_seleccionada].Cells[0].Value.ToString();
             //MessageBox.Show(id_factura_seleccionada);
-            string peticion_lectura = "select Codigo,Detalle,ValorUnitario,Cantidad,ValorTotal from tabla_ventas where Id_factura = '" + Convert.ToString(fila_seleccionada) + "' ";
+            string peticion_lectura = "select Codigo,Detalle,ValorUnitario,Cantidad,ValorTotal from tabla_ventas where Id_factura = '" + Convert.ToString(id_factura_seleccionada) + "' ";
             clase_lectura leer = new clase_lectura();
             SqlDataReader registros = leer.leer_varios_datos(database, peticion_lectura);
             SqlConnection conexion = new SqlConnection(database);

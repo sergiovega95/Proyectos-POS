@@ -47,6 +47,7 @@
             // 
             // reportViewer1
             // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "DataSet1";
             reportDataSource1.Value = this.tabla_facturaBindingSource;
             reportDataSource2.Name = "DataSet2";
@@ -57,11 +58,12 @@
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "VentanaLogin2.Report2.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(10, 12);
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(479, 426);
+            this.reportViewer1.Size = new System.Drawing.Size(432, 461);
             this.reportViewer1.TabIndex = 0;
+            this.reportViewer1.ZoomPercent = 80;
             // 
             // dbPOSDataSet1
             // 
@@ -95,7 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 450);
+            this.ClientSize = new System.Drawing.Size(432, 461);
             this.Controls.Add(this.reportViewer1);
             this.Name = "Vfacturas_todas";
             this.Text = "Form10";
